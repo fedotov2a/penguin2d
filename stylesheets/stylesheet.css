@@ -244,6 +244,12 @@ a {
   .site-footer {
     font-size: 0.9rem; } }
 
+.my-canvas {
+	width: 720px;
+    height: 480px;
+    margin: 0px auto;
+}
+
 #myCanvas {
-	background-color: #eaeaea;
+	background-color: black;
 }
