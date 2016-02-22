@@ -16,7 +16,7 @@ var Penguin = {
 	},
 
 	update: function() {
-		this.frame += (frames % 10 === 0) ? 1 : 0;
+		this.frame += (frames % 15 === 0) ? 1 : 0;
 		this.frame %= this.animation.length;
 
 		this.velocity += this.gravity;
