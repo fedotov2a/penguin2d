@@ -1,9 +1,3 @@
-var /* Sprites */
-    spritePegnuin,
-    spriteBackground
-;
-
-
 /**
  * Sprite class
  *
@@ -22,6 +16,7 @@ function Sprite(image, x, y, width, height) {
     this.width = width;
     this.height = height;
 };
+
 /**
  * Draw sprite the canvas context
  *
@@ -33,22 +28,3 @@ function Sprite(image, x, y, width, height) {
 Sprite.prototype.draw = function(context, x, y) {
     context.drawImage(this.image, this.x, this.y, this.width, this.height, x, y, this.width, this.height);
 };
-
-/**
- * Initiate all sprite
- * 
- * @param  {Image} img spritesheet image
- */
-function initSprites(image) {
-    spritePegnuin = [
-        new Sprite(image, 0, 0, 0, 0),
-        new Sprite(image, 0, 0, 0, 0),
-        new Sprite(image, 0, 0, 0, 0),
-        new Sprite(image, 0, 0, 0, 0),
-        new Sprite(image, 0, 0, 0, 0),
-        new Sprite(image, 0, 0, 0, 0),
-        new Sprite(image, 0, 0, 0, 0) 
-    ];
-
-    spriteBackground = new Sprite(image, 0, 0, 500, 400);
-}

@@ -247,5 +247,10 @@ a {
 #my-canvas {
 	width: 500px;
   height: 400px;
-  margin-left: 425px;
+  position: absolute;
+  top: auto;
+  right: 0;
+  bottom: auto;
+  left: 0;
+  margin: auto;
 }
