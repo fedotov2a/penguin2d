@@ -11,7 +11,11 @@ var /* Game vars */
 ;
 
 function updateBackground() {
-    backgroundPosition = (backgroundPosition - 4) % spriteBackground.width;
+    if (Penguin.y < gameHeight - 70) {
+        backgroundPosition = (backgroundPosition - 5) % spriteBackground.width;
+    } else {
+        backgroundPosition = (backgroundPosition - 5) % spriteBackground.width;
+    }
 }
 
 function renderBackground() {
@@ -21,7 +25,6 @@ function renderBackground() {
 
 function onPress(event) {
     // switch(GameState)
-    console.log('asa');
     if (event.keyCode == 38 || event.keyCode == 32) {
         if (Penguin.y >= gameHeight - 70) {
             Penguin.jump();
@@ -47,11 +50,13 @@ function update() {
     frames = (frames === 5000) ? 0 : frames + 1;
     updateBackground();
     Penguin.update();
+    Enemies.update();
 }
 
 function render() {
     renderBackground();
     Penguin.render(context);
+    Enemies.render(context);
 }
 
 main();

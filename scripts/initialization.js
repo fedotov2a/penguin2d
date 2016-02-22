@@ -1,4 +1,4 @@
-var /* Sprites for penguin and coordinates */
+var /* Sprite penguin and coordinates */
     spritePegnuin,
     spritePenguinX,
     spritePenguinY,
@@ -6,13 +6,22 @@ var /* Sprites for penguin and coordinates */
     spritePenguinHeight = 48
 ;
 
-var /* Sprites for background and coordinates */
+var /* Sprite background and coordinates */
     spriteBackground,
     spriteBackgroundX,
     spriteBackgroundY,
     spriteBackgroundWidth,
     spriteBackgroundHeight
 ;
+
+var /* Sprite rock and coordinates */
+    spriteSnowdrift,
+    spriteSnowdriftX,
+    spriteSnowdriftY,
+    spriteSnowdriftWidth,
+    spriteSnowdriftHeight
+;
+
 var pathToSprites = './scripts/resource/sprites.png';
 
 /**
@@ -36,6 +45,8 @@ function initializeSprites(image) {
     ];
 
     spriteBackground = new Sprite(image, 0, 0, 500, 400);
+
+    spriteRock = new Sprite(image, 633, 74, 37, 28);
 }
 
 
