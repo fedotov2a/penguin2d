@@ -1,6 +1,7 @@
 /**
  * Sprite class
  *
+ * @author Alexander Fedotov
  * @constructor
  * @this {Sprite}
  * @param {Image}  image    spritesheet image
@@ -20,6 +21,7 @@ function Sprite(image, x, y, width, height) {
 /**
  * Draw sprite the canvas context
  *
+ * @author Alexander Fedotov
  * @this {Sprite}
  * @param  {CanvasRenderingContext2D} ctx context used for drawing
  * @param  {number} x   x-position on canvas to draw from

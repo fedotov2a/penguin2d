@@ -8,6 +8,7 @@ var pathToSprites = './scripts/resource/sprites.png';
 /**
  * Initiate all sprite
  * 
+ * @author Alexander Fedotov
  * @param  {Image} img spritesheet image
  */
 function initializeSprites(image) {
@@ -27,6 +28,8 @@ function initializeSprites(image) {
 
 /**
 * Initialize canvas
+*
+* @author Alexander Fedotov
 */
 function initializeCanvas() {
     canvas = document.createElement('canvas');
@@ -48,6 +51,8 @@ function initializeCanvas() {
 
 /**
 * Initialize graphics
+*
+* @author Alexander Fedotov
 */
 function initializeGraphics() {
     var image = new Image();
