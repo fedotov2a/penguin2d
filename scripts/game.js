@@ -12,9 +12,9 @@ var /* Game vars */
 
 function updateBackground() {
     if (Penguin.y < gameHeight - 70) {
-        backgroundPosition = (backgroundPosition - 5) % spriteBackground.width;
+        backgroundPosition = (backgroundPosition - 3) % spriteBackground.width;
     } else {
-        backgroundPosition = (backgroundPosition - 5) % spriteBackground.width;
+        backgroundPosition = (backgroundPosition - 3) % spriteBackground.width;
     }
 }
 
