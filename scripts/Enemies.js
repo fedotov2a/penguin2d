@@ -19,7 +19,7 @@ var Enemies = {
 		}
 
 		for (var i = 0, len = this.rocks.length; i < len; i++) {
-			this.rocks[i].x -= 5;
+			this.rocks[i].x -= 3;
 
 			if (this.rocks[i].x < -50) {
 				this.rocks.splice(i, 1);
