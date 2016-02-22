@@ -19,10 +19,13 @@ function renderBackground() {
     spriteBackground.draw(context, backgroundPosition + spriteBackground.width, 0);
 }
 
-function onpress(eventGame) {
-    // switch: game states
-    if (Penguin.y === gameHeight - 70) {
-        Penguin.jump();
+function onPress(event) {
+    // switch(GameState)
+    console.log('asa');
+    if (event.keyCode == 38 || event.keyCode == 32) {
+        if (Penguin.y >= gameHeight - 70) {
+            Penguin.jump();
+        }
     }
 }
 

@@ -49,15 +49,16 @@ function initializeCanvas() {
     gameWidth = window.innerWidth;
     gameHeight = window.innerHeight;
 
-    var eventGame = 'mousedown';
+    //var eventGame = 'mousedown';
+    var eventGame = 'keydown';
     if (gameWidth >= 500 || gameHeight >= 400) {
         gameWidth = 500;
         gameHeight = 400;
         canvas.style.border = '1px solid #000';
     }
 
-    document.getElementById('my-canvas').addEventListener(eventGame, onpress);
-
+    //document.getElementById('my-canvas').addEventListener(eventGame, onPress, false);
+    window.addEventListener(eventGame, onPress, false);
     canvas.width = gameWidth;
     canvas.height = gameHeight;
 
