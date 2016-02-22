@@ -4,33 +4,55 @@ var Penguin = {
 
 	frame: 0,
 	velocity: 0,
-	animation: [0, 1, 2, 3],
-
+	animationMove: [0, 1, 2, 3],
+	animationJump: [4, 5, 6],
+	isJump: false,
 	radius: 20,
 
-	gravity: 0.25,
-	_jump: 4.5,
+	gravity: 0.35,
+	_jump: 9.5,
 
 	jump: function() {
-		this.velocity = - this._jump;
+		this.velocity = -this._jump;
+		Penguin.isJump = true;
 	},
 
 	update: function() {
-		this.frame += (frames % 15 === 0) ? 1 : 0;
-		this.frame %= this.animation.length;
-
 		this.velocity += this.gravity;
 		this.y += this.velocity;
 
-		this.y = gameHeight - 70;
-		this.velocity = this._jump;
+		if (this.y >= gameHeight - 70) {
+			this.y = gameHeight - 70;
+			this.frame += (frames % 10 === 0) ? 1 : 0;
+			this.frame %= this.animationMove.length;
+		}
+
+		if (this.y < gameHeight - 70) { /* jump */
+			this.frame += (frames % 10 === 0) ? 1 : 0;
+			this.frame %= this.animationJump.length;
+		}
+
+		if (this.y < 20) {
+			this.y = 20;
+			this.velocity = 2;
+		}
+
 	},
 
 	render: function(context) {
 		context.save();
 		context.translate(this.x, this.y);
-		var i = this.animation[this.frame];
-		spritePegnuin[i].draw(context, -spritePegnuin[i].width/2 + 40, -spritePegnuin[i].height/2);
+		var i;
+		if (this.y < gameHeight - 70) { /*jump*/
+			i = this.animationJump[this.frame];
+			Penguin.isJump = false;
+			spritePegnuin[i].draw(context, -spritePegnuin[i].width/2 + 40, -spritePegnuin[i].height/2);
+
+		} else {
+			i = this.animationMove[this.frame];
+			spritePegnuin[i].draw(context, -spritePegnuin[i].width/2 + 40, -spritePegnuin[i].height/2);
+
+		}
 		context.restore();
 	}
 }
