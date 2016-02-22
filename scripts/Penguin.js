@@ -21,9 +21,9 @@ var Penguin = {
 		this.velocity += this.gravity;
 		this.y += this.velocity;
 
-		if (this.y >= gameHeight - 70) {
+		if (this.y >= gameHeight - 70) { /* run */
 			this.y = gameHeight - 70;
-			this.frame += (frames % 10 === 0) ? 1 : 0;
+			this.frame += (frames % 15 === 0) ? 1 : 0;
 			this.frame %= this.animationMove.length;
 		}
 
