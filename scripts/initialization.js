@@ -30,9 +30,9 @@ function initializeSprites(image) {
         new Sprite(image, 775, 2, spritePegnuinWidth, spritePenguinHeight),
 
         /* animate for jump */
-        new Sprite(image, 0, 0, 0, 0),
-        new Sprite(image, 0, 0, 0, 0),
-        new Sprite(image, 0, 0, 0, 0) 
+        new Sprite(image, 503, 2, 38, 50),
+        new Sprite(image, 542, 2, 40, 48),
+        new Sprite(image, 584, 2, 40, 48) 
     ];
 
     spriteBackground = new Sprite(image, 0, 0, 500, 400);
@@ -56,7 +56,7 @@ function initializeCanvas() {
         canvas.style.border = '1px solid #000';
     }
 
-    document.addEventListener(eventGame, onpress);
+    document.getElementById('my-canvas').addEventListener(eventGame, onpress);
 
     canvas.width = gameWidth;
     canvas.height = gameHeight;

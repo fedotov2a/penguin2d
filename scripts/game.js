@@ -11,7 +11,7 @@ var /* Game vars */
 ;
 
 function updateBackground() {
-    backgroundPosition = (backgroundPosition - 1) % spriteBackground.width;
+    backgroundPosition = (backgroundPosition - 4) % spriteBackground.width;
 }
 
 function renderBackground() {
@@ -21,8 +21,9 @@ function renderBackground() {
 
 function onpress(eventGame) {
     // switch: game states
-
-    Penguin.jump();
+    if (Penguin.y === gameHeight - 70) {
+        Penguin.jump();
+    }
 }
 
 function main() {
