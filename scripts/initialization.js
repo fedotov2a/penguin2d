@@ -1,18 +1,8 @@
-var /* Sprites for penguin and coordinates */
+var /* Sprites */
     spritePegnuin,
-    spritePenguinX,
-    spritePenguinY,
-    spritePegnuinWidth = 45,
-    spritePenguinHeight = 48
+    spriteBackground
 ;
 
-var /* Sprites for background and coordinates */
-    spriteBackground,
-    spriteBackgroundX,
-    spriteBackgroundY,
-    spriteBackgroundWidth,
-    spriteBackgroundHeight
-;
 var pathToSprites = './scripts/resource/sprites.png';
 
 /**
@@ -23,13 +13,10 @@ var pathToSprites = './scripts/resource/sprites.png';
  */
 function initializeSprites(image) {
     spritePegnuin = [
-        /* animate for motion */
-        new Sprite(image, 631, 2, spritePegnuinWidth, spritePenguinHeight),
-        new Sprite(image, 677, 2, spritePegnuinWidth, spritePenguinHeight),
-        new Sprite(image, 727, 2, spritePegnuinWidth, spritePenguinHeight),
-        new Sprite(image, 775, 2, spritePegnuinWidth, spritePenguinHeight),
-
-        /* animate for jump */
+        new Sprite(image, 0, 0, 0, 0),
+        new Sprite(image, 0, 0, 0, 0),
+        new Sprite(image, 0, 0, 0, 0),
+        new Sprite(image, 0, 0, 0, 0),
         new Sprite(image, 0, 0, 0, 0),
         new Sprite(image, 0, 0, 0, 0),
         new Sprite(image, 0, 0, 0, 0) 
@@ -49,14 +36,11 @@ function initializeCanvas() {
     gameWidth = window.innerWidth;
     gameHeight = window.innerHeight;
 
-    var eventGame = 'mousedown';
     if (gameWidth >= 500 || gameHeight >= 400) {
         gameWidth = 500;
         gameHeight = 400;
         canvas.style.border = '1px solid #000';
     }
-
-    document.addEventListener(eventGame, onpress);
 
     canvas.width = gameWidth;
     canvas.height = gameHeight;

@@ -19,12 +19,6 @@ function renderBackground() {
     spriteBackground.draw(context, backgroundPosition + spriteBackground.width, 0);
 }
 
-function onpress(eventGame) {
-    // switch: game states
-
-    Penguin.jump();
-}
-
 function main() {
     initializeCanvas();
     initializeGraphics();
@@ -40,14 +34,13 @@ function run() {
 }
 
 function update() {
-    frames = (frames === 5000) ? 0 : frames + 1;
+    //frames = (frames === 5000) ? 0 : frames + 1;
     updateBackground();
-    Penguin.update();
+    
 }
 
 function render() {
-    renderBackground();
-    Penguin.render(context);
+    renderBackground();   
 }
 
 main();
