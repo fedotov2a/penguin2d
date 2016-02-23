@@ -19,9 +19,11 @@ var penguin = {
 	velocity: 0,
 	animationMove: [0, 1, 2, 3],
 	animationJump: [4, 5, 6],
-	speedMove: 15,
-	speedJump: 10, 
-	radius: 20,
+	speedAnimationMove: 15,
+	speedAnimationJump: 10,
+
+	targetX: 35,
+	radius: 25,
 
 	_jump: 9.5,
 
@@ -41,11 +43,11 @@ var penguin = {
 		this.y += this.velocity;
 
 		if (this.isJump()) {
-			this.frame += (game.frames % this.speedJump === 0) ? 1 : 0;
+			this.frame += (game.frames % this.speedAnimationJump === 0) ? 1 : 0;
 			this.frame %= this.animationJump.length;
 		} else {
 			this.y = game.groundLayer;
-			this.frame += (game.frames % this.speedMove === 0) ? 1 : 0;
+			this.frame += (game.frames % this.speedAnimationMove === 0) ? 1 : 0;
 			this.frame %= this.animationMove.length;
 		}
 	},
@@ -63,5 +65,11 @@ var penguin = {
 
 		}
 		context.restore();
+		context.beginPath();
+        context.arc(35, this.y, 25, 0, 2*Math.PI, false);
+        context.lineWidth = 1;
+        context.strokeStyle = 'red';
+        context.stroke();
+        context.closePath();
 	}
 }
