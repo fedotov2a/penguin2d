@@ -1,40 +1,66 @@
-var /* Game vars */
+var
     canvas,
     context,
-    gameWidth,
-    gameHeight,
-    currentState,
-    frames = 0,
-    backgroundPosition = 0,
-    score = 0,
-    best = localStorage.getItem('best') || 0;
+    image = new Image(),
+    sprites = './scripts/resource/sprites.png'
 ;
 
-function updateBackground() {
-    if (Penguin.y < gameHeight - 70) {
-        backgroundPosition = (backgroundPosition - 3) % spriteBackground.width;
-    } else {
-        backgroundPosition = (backgroundPosition - 3) % spriteBackground.width;
-    }
-}
+var state = {
+    START: 0, 
+    GAME: 1,
+    END: 2
+};
 
-function renderBackground() {
-    spriteBackground.draw(context, backgroundPosition, 0);
-    spriteBackground.draw(context, backgroundPosition + spriteBackground.width, 0);
-}
+var game = {
+    width: 720,
+    height: 480,
+    speed: 3,
+    score: 0,
+//    bestScore: localStorage.getItem('bestScore') || 0,
+    frames: 0,
+    gravity: 0.35,
+    groundLayer: 0,
+    differenceHeight: 160,
+    
+    currentState: state.GAME,
+
+    init: function() {
+        this.groundLayer = this.height - this.differenceHeight;
+        canvas = document.createElement('canvas');
+        canvas.style.border = '1px solid #000';
+
+        // if (window.innerWidth < 720 || window.innerHeight < 480) {
+        //     this.width = 500;
+        //     this.height = 400;
+        // }
+
+        //document.getElementById('my-canvas').addEventListener(eventGame, onPress, false);
+        window.addEventListener('keydown', onPress, false);
+        canvas.width = this.width;
+        canvas.height = this.height;
+
+        context = canvas.getContext('2d');
+        context.scale(game.width / 500, game.height / 400);
+        document.getElementById('my-canvas').appendChild(canvas);
+
+        image.src = sprites;
+        image.onload = function() {
+            run();
+        }
+    }
+};
 
 function onPress(event) {
     // switch(GameState)
     if (event.keyCode == 38 || event.keyCode == 32) {
-        if (Penguin.y >= gameHeight - 70) {
-            Penguin.jump();
+        if (!penguin.isJump()) {
+            penguin.jump();
         }
     }
 }
 
 function main() {
-    initializeCanvas();
-    initializeGraphics();
+    game.init();
 }
 
 function run() {
@@ -47,16 +73,20 @@ function run() {
 }
 
 function update() {
-    frames = (frames === 5000) ? 0 : frames + 1;
-    updateBackground();
-    Penguin.update();
-    Enemies.update();
+    game.frames = (game.frames === 5000) ? 0 : game.frames + 1;
+    background.update();
+    penguin.update();
+    rock.update();
+    snowdrift.update();
+    iceHole.update();
 }
 
 function render() {
-    renderBackground();
-    Penguin.render(context);
-    Enemies.render(context);
+    background.render(context);
+    penguin.render(context);
+    rock.render(context);
+    snowdrift.render(context);
+    iceHole.render(context);
 }
 
 main();
