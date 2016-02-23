@@ -1,56 +1,65 @@
-var Penguin = {
+var penguin = {
 	x: 0,
 	y: 0,
+
+	sprite: [
+        /* animate for motion */
+        new Sprite(image, 631, 2, 45, 48),
+        new Sprite(image, 677, 2, 45, 48),
+        new Sprite(image, 727, 2, 45, 48),
+        new Sprite(image, 775, 2, 45, 48),
+
+        /* animate for jump */
+        new Sprite(image, 503, 2, 38, 50),
+        new Sprite(image, 542, 2, 40, 48),
+        new Sprite(image, 584, 2, 40, 48) 
+    ],
 
 	frame: 0,
 	velocity: 0,
 	animationMove: [0, 1, 2, 3],
 	animationJump: [4, 5, 6],
-	isJump: false,
+	speedMove: 15,
+	speedJump: 10, 
 	radius: 20,
 
-	gravity: 0.35,
 	_jump: 9.5,
 
 	jump: function() {
 		this.velocity = -this._jump;
-		Penguin.isJump = true;
+	},
+
+	isJump: function() {
+		if (this.y < game.groundLayer) {
+			return true;
+		}
+		return false;
 	},
 
 	update: function() {
-		this.velocity += this.gravity;
+		this.velocity += game.gravity;
 		this.y += this.velocity;
 
-		if (this.y >= gameHeight - 70) { /* run */
-			this.y = gameHeight - 70;
-			this.frame += (frames % 15 === 0) ? 1 : 0;
+		if (this.isJump()) {
+			this.frame += (game.frames % this.speedJump === 0) ? 1 : 0;
+			this.frame %= this.animationJump.length;
+		} else {
+			this.y = game.groundLayer;
+			this.frame += (game.frames % this.speedMove === 0) ? 1 : 0;
 			this.frame %= this.animationMove.length;
 		}
-
-		if (this.y < gameHeight - 70) { /* jump */
-			this.frame += (frames % 10 === 0) ? 1 : 0;
-			this.frame %= this.animationJump.length;
-		}
-
-		if (this.y < 20) {
-			this.y = 20;
-			this.velocity = 2;
-		}
-
 	},
 
 	render: function(context) {
 		context.save();
 		context.translate(this.x, this.y);
 		var i;
-		if (this.y < gameHeight - 70) { /*jump*/
+		if (this.isJump()) {
 			i = this.animationJump[this.frame];
-			Penguin.isJump = false;
-			spritePegnuin[i].draw(context, -spritePegnuin[i].width/2 + 40, -spritePegnuin[i].height/2);
-
+			this.sprite[i].draw(context, -this.sprite[i].width/2 + 40, -this.sprite[i].height/2);
 		} else {
 			i = this.animationMove[this.frame];
-			spritePegnuin[i].draw(context, -spritePegnuin[i].width/2 + 40, -spritePegnuin[i].height/2);
+			this.sprite[i].draw(context, -this.sprite[i].width/2 + 40, -this.sprite[i].height/2);
 
 		}
 		context.restore();
