@@ -38,6 +38,7 @@ var rock = {
 			this._rock[i].x -= game.speed;
 
 			if (this.isHit(this._rock[i].x + 20, this.y + 15)) {
+				penguin.message = 'АЙ!';
 				//console.log('HIT ROCK');
 			}
 
@@ -52,12 +53,12 @@ var rock = {
 	render: function(context) {
 		for (var i = 0, length = this._rock.length; i < length; i++) {
 			this.sprite.draw(context, this._rock[i].x, this._rock[i].y);
-			context.beginPath();
-	        context.arc(this._rock[i].x+20, this.y+15, this.radius, 0, 2*Math.PI, false);
-	        context.lineWidth = 1;
-	        context.strokeStyle = 'green';
-	        context.stroke();
-	        context.closePath();
+			// context.beginPath();
+	  //       context.arc(this._rock[i].x+20, this.y+15, this.radius, 0, 2*Math.PI, false);
+	  //       context.lineWidth = 1;
+	  //       context.strokeStyle = 'green';
+	  //       context.stroke();
+	  //       context.closePath();
 		}
 	}
 };

@@ -27,6 +27,8 @@ var penguin = {
 
 	_jump: 9.5,
 
+	message: '',
+
 	jump: function() {
 		this.velocity = -this._jump;
 	},
@@ -66,10 +68,18 @@ var penguin = {
 		}
 		context.restore();
 		context.beginPath();
-        context.arc(35, this.y, 25, 0, 2*Math.PI, false);
-        context.lineWidth = 1;
-        context.strokeStyle = 'red';
-        context.stroke();
-        context.closePath();
+		context.font = '40pt Calibri';
+      	context.fillStyle = 'blue';
+      	context.fillText(this.message, 150, 100);
+      	for (var j = 0; j < 100; j++) {
+      	}
+      	context.closePath();
+      	this.message = '';
+		// context.beginPath();
+  //       context.arc(35, this.y, 25, 0, 2*Math.PI, false);
+  //       context.lineWidth = 1;
+  //       context.strokeStyle = 'red';
+  //       context.stroke();
+  //       context.closePath();
 	}
 }

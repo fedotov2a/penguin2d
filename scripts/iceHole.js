@@ -38,7 +38,8 @@ var iceHole = {
 			this._iceHole[i].x -= game.speed;
 
 			if (this.isHit(this._iceHole[i].x + 20, this.y + 15)) {
-				console.log('HIT ICE-HOLE');
+				penguin.message = 'Ы!';
+				//console.log('HIT ICE-HOLE');
 			}
 
 			if (this._iceHole[i].x < -50) {
@@ -52,12 +53,12 @@ var iceHole = {
 	render: function(context) {
 		for (var i = 0, length = this._iceHole.length; i < length; i++) {
 			this.sprite.draw(context, this._iceHole[i].x, this._iceHole[i].y);
-			context.beginPath();
-	        context.arc(this._iceHole[i].x+20, this.y+15, this.radius, 0, 2*Math.PI, false);
-	        context.lineWidth = 1;
-	        context.strokeStyle = 'blue';
-	        context.stroke();
-	        context.closePath();
+	  //       context.beginPath();
+	  //       context.arc(this._iceHole[i].x+20, this.y+15, this.radius, 0, 2*Math.PI, false);
+	  //       context.lineWidth = 1;
+	  //       context.strokeStyle = 'blue';
+	  //       context.stroke();
+	  //       context.closePath();
 		}
 	}
 };
