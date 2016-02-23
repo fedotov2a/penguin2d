@@ -38,7 +38,7 @@ var rock = {
 			this._rock[i].x -= game.speed;
 
 			if (this.isHit(this._rock[i].x + 20, this.y + 15)) {
-				console.log('HIT');
+				//console.log('HIT ROCK');
 			}
 
 			if (this._rock[i].x < -50) {
