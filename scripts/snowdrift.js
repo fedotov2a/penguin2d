@@ -1,6 +1,6 @@
 var snowdrift = {
     _snowdrift: [],
-    repeat: 241,
+    repeat: 997,
 
     x: 0,
     y: game.groundLayer,
