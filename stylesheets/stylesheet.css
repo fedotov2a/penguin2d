@@ -245,8 +245,8 @@ a {
     font-size: 0.9rem; } }
 
 #my-canvas {
-	width: 500px;
-  height: 400px;
+	width: 720px;
+  height: 480px;
   position: absolute;
   top: auto;
   right: 0;
