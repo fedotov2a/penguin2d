@@ -1,6 +1,6 @@
 var snowdrift = {
 	_snowdrift: [],
-	repeat: 100,
+	repeat: 241,
 
 	sprite: new Sprite(image, 721, 65, 33, 33),
 
@@ -11,7 +11,7 @@ var snowdrift = {
 	update: function() {
 
 		if (game.frames % this.repeat === 0) {
-			var _x = game.width + (this.sprite.width + 150 * Math.random());
+			var _x = game.width + (this.sprite.width + 200 * Math.random());
 			this._snowdrift.push({
 				x: _x,
 				y: game.groundLayer,

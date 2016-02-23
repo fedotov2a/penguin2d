@@ -1,6 +1,6 @@
 var rock = {
 	_rock: [],
-	repeat: 100,
+	repeat: 97,
 
 	sprite: new Sprite(image, 633, 74, 37, 28),
 
@@ -10,7 +10,7 @@ var rock = {
 
 	update: function() {
 		if (game.frames % this.repeat === 0) {
-			var _x = game.width + (this.sprite.width + 150 * Math.random());
+			var _x = game.width + (this.sprite.width + 500 * Math.random());
 			this._rock.push({
 				x: _x,
 				y: game.groundLayer,
