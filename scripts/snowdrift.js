@@ -6,7 +6,7 @@ var snowdrift = {
     y: game.groundLayer,
     radius: 15,
 
-    sprite: new Sprite(image, 721, 65, 33, 33),
+    sprite: new Sprite(image, 969, 358, 110, 110),
 
     reset: function () {
         this._snowdrift = [];
@@ -29,7 +29,7 @@ var snowdrift = {
             var _x = game.width + (this.sprite.width + 200 * Math.random());
             this._snowdrift.push({
                 x: _x,
-                y: game.groundLayer,
+                y: game.groundLayer - 45,
                 width: this.sprite.width,
                 height: this.sprite.height
             });

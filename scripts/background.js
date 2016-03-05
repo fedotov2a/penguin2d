@@ -1,6 +1,6 @@
 var background = {
     position: 0,
-    sprite: new Sprite(image, 0, 0, 500, 400),
+    sprite: new Sprite(image, 0, 0, 720, 480),
 
     update: function() {
         this.position = (this.position - game.speed) % this.sprite.width;

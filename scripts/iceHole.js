@@ -6,7 +6,7 @@ var iceHole = {
     y: game.groundLayer,
     radius: 15,
 
-    sprite: new Sprite(image, 673, 75, 48, 29),
+    sprite: new Sprite(image, 855, 446, 105, 25),
 
     reset: function () {
         this._iceHole = [];
@@ -28,7 +28,7 @@ var iceHole = {
             var _x = game.width + (this.sprite.width + 250 * Math.random());
             this._iceHole.push({
                 x: _x,
-                y: game.groundLayer,
+                y: game.groundLayer + 40,
                 width: this.sprite.width,
                 height: this.sprite.height
             });

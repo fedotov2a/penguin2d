@@ -6,7 +6,7 @@ var rock = {
     y: game.groundLayer,
     radius: 15,
 
-    sprite: new Sprite(image, 633, 74, 37, 28),
+    sprite: new Sprite(image, 1095, 361, 110, 110),
 
     reset: function () {
         this._rock = [];
@@ -28,7 +28,7 @@ var rock = {
             this.x = game.width + (this.sprite.width + 500 * Math.random());
             this._rock.push({
                 x: rock.x,
-                y: game.groundLayer,
+                y: game.groundLayer - 40,
                 width: this.sprite.width,
                 height: this.sprite.height
             });

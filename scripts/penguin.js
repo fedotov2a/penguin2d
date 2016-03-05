@@ -4,15 +4,18 @@ var penguin = {
 
     sprite: [
         /* animate for motion */
-        new Sprite(image, 631, 2, 45, 48),
-        new Sprite(image, 677, 2, 45, 48),
-        new Sprite(image, 727, 2, 45, 48),
-        new Sprite(image, 775, 2, 45, 48),
+        new Sprite(image, 722, 0, 90, 101),
+        new Sprite(image, 812, 0, 90, 101),
+        new Sprite(image, 908, 0, 90, 101),
+        new Sprite(image, 1000, 0, 90, 101),
 
         /* animate for jump */
-        new Sprite(image, 503, 2, 38, 50),
-        new Sprite(image, 542, 2, 40, 48),
-        new Sprite(image, 584, 2, 40, 48) 
+        new Sprite(image, 722, 108, 88, 102),
+        new Sprite(image, 815, 108, 98, 99),
+        new Sprite(image, 917, 108, 98, 99),
+
+        /* animate for hurt */
+        new Sprite(image, 1102, 0, 95, 101)
     ],
 
     frame: 0,
@@ -25,7 +28,7 @@ var penguin = {
     targetX: 35,
     radius: 25,
 
-    _jump: 9.5,
+    _jump: 11,
 
     message: '',
 
@@ -60,10 +63,10 @@ var penguin = {
         var i;
         if (this.isJump()) {
             i = this.animationJump[this.frame];
-            this.sprite[i].draw(context, -this.sprite[i].width/2 + 40, -this.sprite[i].height/2);
+            this.sprite[i].draw(context, 60, -45);
         } else {
             i = this.animationMove[this.frame];
-            this.sprite[i].draw(context, -this.sprite[i].width/2 + 40, -this.sprite[i].height/2);
+            this.sprite[i].draw(context, 60, -45);
 
         }
         context.restore();

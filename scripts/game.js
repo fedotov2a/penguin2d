@@ -14,13 +14,13 @@ var state = {
 var game = {
     width: 720,
     height: 480,
-    speed: 3,
+    speed: 3.8,
     score: 0,
 //    bestScore: localStorage.getItem('bestScore') || 0,
     frames: 0,
     gravity: 0.35,
     groundLayer: 0,
-    differenceHeight: 160,
+    differenceHeight: 120,
     
     currentState: state.GAME,
 
@@ -34,13 +34,13 @@ var game = {
         //     this.height = 400;
         // }
 
-        //document.getElementById('my-canvas').addEventListener(eventGame, onPress, false);
+        // document.getElementById('my-canvas').addEventListener('click', onPress, false);
         window.addEventListener('keydown', onPress, false);
         canvas.width = this.width;
         canvas.height = this.height;
 
         context = canvas.getContext('2d');
-        context.scale(game.width / 500, game.height / 400);
+        // context.scale(game.width / 500, game.height / 400);
         document.getElementById('my-canvas').appendChild(canvas);
 
         image.src = sprites;
@@ -52,7 +52,7 @@ var game = {
 
 function onPress(event) {
     // switch(GameState)
-    if (event.keyCode == 38 || event.keyCode == 32) {
+    if (event.keyCode == 32) {
         if (!penguin.isJump()) {
             penguin.jump();
         }
@@ -79,6 +79,9 @@ function update() {
     rock.update();
     snowdrift.update();
     iceHole.update();
+    icecream.update();
+    snowflake.update();
+    pieceOfIce.update();
 }
 
 function render() {
@@ -87,6 +90,11 @@ function render() {
     rock.render(context);
     snowdrift.render(context);
     iceHole.render(context);
+    icecream.render(context);
+    snowflake.render(context);
+    pieceOfIce.render(context);
+    healthBar.render(context);
+    scoreBar.render(context);
 }
 
 main();
