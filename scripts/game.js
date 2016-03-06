@@ -10,7 +10,7 @@ var
 var state = {
     START: 0, 
     GAME: 1,
-    END: 2
+    GAME_OVER: 2
 };
 
 var game = {
@@ -74,29 +74,41 @@ function run() {
 }
 
 function update() {
-    game.frames = (game.frames === 10000) ? 0 : game.frames + 1;
-    background.update();
-    rock.update();
-    snowdrift.update();
-    iceHole.update();
-    icecream.update();
-    snowflake.update();
-    pieceOfIce.update();
-    penguin.update();
-    healthBar.update();
+    if (game.currentState === state.START) {
+
+    } else if (game.currentState === state.GAME) {
+        game.frames = (game.frames === 10000) ? 0 : game.frames + 1;
+        background.update();
+        rock.update();
+        snowdrift.update();
+        iceHole.update();
+        icecream.update();
+        snowflake.update();
+        pieceOfIce.update();
+        penguin.update();
+        healthBar.update();
+    } else if (game.currentState === state.GAME_OVER) {
+
+    }
 }
 
 function render() {
-    background.render(context);
-    rock.render(context);
-    snowdrift.render(context);
-    iceHole.render(context);
-    icecream.render(context);
-    snowflake.render(context);
-    pieceOfIce.render(context);
-    penguin.render(context);
-    healthBar.render(context);
-    scoreBar.render(context);
+    if (game.currentState === state.START) {
+
+    } else if (game.currentState === state.GAME) {
+        background.render(context);
+        rock.render(context);
+        snowdrift.render(context);
+        iceHole.render(context);
+        icecream.render(context);
+        snowflake.render(context);
+        pieceOfIce.render(context);
+        penguin.render(context);
+        healthBar.render(context);
+        scoreBar.render(context);
+    } else if (game.currentState === state.GAME_OVER) {
+        gameOver.render(context);
+    }
 }
 
 main();

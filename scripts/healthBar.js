@@ -12,6 +12,9 @@ var healthBar = {
         if (this.isHitEnemy) {
             this.sprite.splice(this.sprite.length - 1, 1);
             this.isHitEnemy = false;
+            if (this.sprite.length === 0) {
+                penguin.isDie = true;
+            }
         } else if (this.isHitIcecream) {
             if (this.sprite.length < 3) {
                 this.sprite.splice(this.sprite.length, 0, new Sprite(image, 1021, 116, 43, 60));
