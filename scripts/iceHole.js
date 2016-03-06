@@ -1,6 +1,6 @@
 var iceHole = {
     _iceHole: [],
-    repeat: 1423,
+    repeat: 907,
 
     x: 0,
     y: game.groundLayer,
