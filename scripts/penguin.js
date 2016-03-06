@@ -25,8 +25,9 @@ var penguin = {
     speedAnimationMove: 15,
     speedAnimationJump: 10,
 
-    targetX: 35,
-    radius: 25,
+    targetX: 100,
+    targetY: 10,
+    radius: 40,
 
     _jump: 11,
 
@@ -70,6 +71,7 @@ var penguin = {
 
         }
         context.restore();
+
         context.beginPath();
         context.font = '40pt Calibri';
         context.fillStyle = 'blue';
@@ -79,7 +81,7 @@ var penguin = {
         context.closePath();
         this.message = '';
         // context.beginPath();
-        // context.arc(35, this.y, 25, 0, 2*Math.PI, false);
+        // context.arc(this.targetX, this.y + this.targetY, this.radius, 0, 2*Math.PI, false);
         // context.lineWidth = 1;
         // context.strokeStyle = 'red';
         // context.stroke();

@@ -1,10 +1,13 @@
 var rock = {
     _rock: [],
-    repeat: 243,
+    repeat: 1091,
 
     x: 0,
     y: game.groundLayer,
-    radius: 15,
+
+    targetX: 48,
+    targetY: 18,
+    radius: 47,
 
     sprite: new Sprite(image, 1095, 361, 110, 110),
 
@@ -14,7 +17,7 @@ var rock = {
 
     isHit: function(rockX, rockY) {
         var x = (penguin.targetX - rockX) * (penguin.targetX - rockX);
-        var y = (penguin.y - rockY) * (penguin.y - rockY);
+        var y = (penguin.y + penguin.targetY - rockY) * (penguin.y + penguin.targetY - rockY);
         var r = (this.radius + penguin.radius) * (this.radius + penguin.radius);
 
         if (x + y <= r) {
@@ -37,7 +40,7 @@ var rock = {
         for (var i = 0, length = this._rock.length; i < length; i++) {
             this._rock[i].x -= game.speed;
 
-            if (this.isHit(this._rock[i].x + 20, this.y + 15)) {
+            if (this.isHit(this._rock[i].x + this.targetX, this.y + this.targetY)) {
                 penguin.message = 'АЙ!';
                 //console.log('HIT ROCK');
             }
@@ -54,7 +57,7 @@ var rock = {
         for (var i = 0, length = this._rock.length; i < length; i++) {
             this.sprite.draw(context, this._rock[i].x, this._rock[i].y);
             // context.beginPath();
-            // context.arc(this._rock[i].x+20, this.y+15, this.radius, 0, 2*Math.PI, false);
+            // context.arc(this._rock[i].x + this.targetX, this.y + this.targetY, this.radius, 0, 2*Math.PI, false);
             // context.lineWidth = 1;
             // context.strokeStyle = 'green';
             // context.stroke();

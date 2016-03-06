@@ -73,7 +73,7 @@ function run() {
 }
 
 function update() {
-    game.frames = (game.frames === 5000) ? 0 : game.frames + 1;
+    game.frames = (game.frames === 10000) ? 0 : game.frames + 1;
     background.update();
     penguin.update();
     rock.update();

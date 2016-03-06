@@ -1,10 +1,13 @@
 var icecream = {
     _icecream: [],
-    repeat: 500,
+    repeat: 5020,
 
     x: 0,
     y: game.groundLayer,
-    radius: 15,
+
+    targetX: 23,
+    targetY: -70,
+    radius: 18,
 
     sprite: new Sprite(image, 1021, 116, 43, 60),
 
@@ -14,7 +17,7 @@ var icecream = {
 
     isHit: function(icecreamX, icecreamY) {
         var x = (penguin.targetX - icecreamX) * (penguin.targetX - icecreamX);
-        var y = (penguin.y - icecreamY) * (penguin.y - icecreamY);
+        var y = (penguin.y + penguin.targetY - icecreamY) * (penguin.y + penguin.targetY - icecreamY);
         var r = (this.radius + penguin.radius) * (this.radius + penguin.radius);
 
         if (x + y <= r) {
@@ -38,7 +41,7 @@ var icecream = {
         for (var i = 0, length = this._icecream.length; i < length; i++) {
             this._icecream[i].x -= game.speed;
 
-            if (this.isHit(this._icecream[i].x + 20, this.y - 70)) {
+            if (this.isHit(this._icecream[i].x + this.targetX, this.y + this.targetY)) {
                 penguin.message = 'НЯМ!';
                 //console.log('HIT SNOWDRIFT');
             }
@@ -55,7 +58,7 @@ var icecream = {
         for (var i = 0, length = this._icecream.length; i < length; i++) {
             this.sprite.draw(context, this._icecream[i].x, this._icecream[i].y);
             // context.beginPath();
-            // context.arc(this._icecream[i].x+20, this.y - 70, this.radius, 0, 2*Math.PI, false);
+            // context.arc(this._icecream[i].x + this.targetX, this.y + this.targetY, this.radius, 0, 2*Math.PI, false);
             // context.lineWidth = 1;
             // context.strokeStyle = 'yellow';
             // context.stroke();

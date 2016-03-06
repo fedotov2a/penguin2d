@@ -1,10 +1,13 @@
 var snowdrift = {
     _snowdrift: [],
-    repeat: 997,
+    repeat: 1301,
 
     x: 0,
     y: game.groundLayer,
-    radius: 15,
+
+    targetX: 57,
+    targetY: 25,
+    radius: 40,
 
     sprite: new Sprite(image, 969, 358, 110, 110),
 
@@ -14,7 +17,7 @@ var snowdrift = {
 
     isHit: function(snowdriftX, snowdriftY) {
         var x = (penguin.targetX - snowdriftX) * (penguin.targetX - snowdriftX);
-        var y = (penguin.y - snowdriftY) * (penguin.y - snowdriftY);
+        var y = (penguin.y + penguin.targetY - snowdriftY) * (penguin.y + penguin.targetY - snowdriftY);
         var r = (this.radius + penguin.radius) * (this.radius + penguin.radius);
 
         if (x + y <= r) {
@@ -38,7 +41,7 @@ var snowdrift = {
         for (var i = 0, length = this._snowdrift.length; i < length; i++) {
             this._snowdrift[i].x -= game.speed;
 
-            if (this.isHit(this._snowdrift[i].x + 20, this.y + 15)) {
+            if (this.isHit(this._snowdrift[i].x + this.targetX, this.y + this.targetY)) {
                 penguin.message = 'ОЙ!';
                 //console.log('HIT SNOWDRIFT');
             }
@@ -55,7 +58,7 @@ var snowdrift = {
         for (var i = 0, length = this._snowdrift.length; i < length; i++) {
             this.sprite.draw(context, this._snowdrift[i].x, this._snowdrift[i].y);
             // context.beginPath();
-            // context.arc(this._snowdrift[i].x+20, this.y+15, this.radius, 0, 2*Math.PI, false);
+            // context.arc(this._snowdrift[i].x + this.targetX, this.y + this.targetY, this.radius, 0, 2 * Math.PI, false);
             // context.lineWidth = 1;
             // context.strokeStyle = 'yellow';
             // context.stroke();
