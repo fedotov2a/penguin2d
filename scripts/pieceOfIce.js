@@ -44,6 +44,10 @@ var pieceOfIce = {
             if (this.isHit(this._pieceOfIce[i].x + this.targetX, this.y + this.targetY)) {
                 penguin.message = 'ХВАТЬ!';
                 //console.log('HIT SNOWDRIFT');
+                this._pieceOfIce.splice(i, 1);
+                i--;
+                length--;
+                continue;
             }
 
             if (this._pieceOfIce[i].x < -50) {

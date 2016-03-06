@@ -44,6 +44,10 @@ var snowflake = {
             if (this.isHit(this._snowflake[i].x + this.targetX, this.y + this.targetY)) {
                 penguin.message = 'ХВАТЬ!';
                 //console.log('HIT SNOWDRIFT');
+                this._snowflake.splice(i, 1);
+                i--;
+                length--;
+                continue;
             }
 
             if (this._snowflake[i].x < -50) {

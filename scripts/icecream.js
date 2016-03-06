@@ -44,6 +44,11 @@ var icecream = {
             if (this.isHit(this._icecream[i].x + this.targetX, this.y + this.targetY)) {
                 penguin.message = 'НЯМ!';
                 //console.log('HIT SNOWDRIFT');
+
+                this._icecream.splice(i, 1);
+                i--;
+                length--;
+                continue;
             }
 
             if (this._icecream[i].x < -50) {

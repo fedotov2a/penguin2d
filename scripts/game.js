@@ -2,7 +2,9 @@ var
     canvas,
     context,
     image = new Image(),
-    sprites = './scripts/resource/sprites.png'
+    sprites = './scripts/resource/sprites.png',
+
+    KEY_SPACE = 32
 ;
 
 var state = {
@@ -52,7 +54,7 @@ var game = {
 
 function onPress(event) {
     // switch(GameState)
-    if (event.keyCode == 32) {
+    if (event.keyCode == KEY_SPACE) {
         if (!penguin.isJump()) {
             penguin.jump();
         }
@@ -75,18 +77,17 @@ function run() {
 function update() {
     game.frames = (game.frames === 10000) ? 0 : game.frames + 1;
     background.update();
-    penguin.update();
     rock.update();
     snowdrift.update();
     iceHole.update();
     icecream.update();
     snowflake.update();
     pieceOfIce.update();
+    penguin.update();
 }
 
 function render() {
     background.render(context);
-    penguin.render(context);
     rock.render(context);
     snowdrift.render(context);
     iceHole.render(context);
@@ -95,6 +96,7 @@ function render() {
     pieceOfIce.render(context);
     healthBar.render(context);
     scoreBar.render(context);
+    penguin.render(context);
 }
 
 main();

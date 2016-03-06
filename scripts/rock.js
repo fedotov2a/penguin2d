@@ -1,6 +1,6 @@
 var rock = {
     _rock: [],
-    repeat: 1091,
+    repeat: 100,
 
     x: 0,
     y: game.groundLayer,
@@ -42,10 +42,16 @@ var rock = {
 
             if (this.isHit(this._rock[i].x + this.targetX, this.y + this.targetY)) {
                 penguin.message = 'АЙ!';
+                penguin.isHurt = true;
+
+                this._rock.splice(i, 1);
+                i--;
+                length--;
+                continue;
                 //console.log('HIT ROCK');
             }
 
-            if (this._rock[i].x < -50) {
+            if (this._rock[i].x < -70) {
                 this._rock.splice(i, 1);
                 i--;
                 length--;

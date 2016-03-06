@@ -43,9 +43,16 @@ var iceHole = {
             if (this.isHit(this._iceHole[i].x + this.targetX, this.y + this.targetY)) {
                 penguin.message = 'Ы!';
                 //console.log('HIT ICE-HOLE');
+
+                penguin.isHurt = true;
+
+                this._iceHole.splice(i, 1);
+                i--;
+                length--;
+                continue;
             }
 
-            if (this._iceHole[i].x < -50) {
+            if (this._iceHole[i].x < -70) {
                 this._iceHole.splice(i, 1);
                 i--;
                 length--;

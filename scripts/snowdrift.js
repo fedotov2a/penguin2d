@@ -44,9 +44,15 @@ var snowdrift = {
             if (this.isHit(this._snowdrift[i].x + this.targetX, this.y + this.targetY)) {
                 penguin.message = 'ОЙ!';
                 //console.log('HIT SNOWDRIFT');
+                penguin.isHurt = true;
+
+                this._snowdrift.splice(i, 1);
+                i--;
+                length--;
+                continue;
             }
 
-            if (this._snowdrift[i].x < -50) {
+            if (this._snowdrift[i].x < -70) {
                 this._snowdrift.splice(i, 1);
                 i--;
                 length--;
