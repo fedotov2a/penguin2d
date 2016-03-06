@@ -17,7 +17,6 @@ var game = {
     width: 720,
     height: 480,
     speed: 3.8,
-    score: 0,
 //    bestScore: localStorage.getItem('bestScore') || 0,
     frames: 0,
     gravity: 0.35,
@@ -84,6 +83,7 @@ function update() {
     snowflake.update();
     pieceOfIce.update();
     penguin.update();
+    healthBar.update();
 }
 
 function render() {
@@ -94,9 +94,9 @@ function render() {
     icecream.render(context);
     snowflake.render(context);
     pieceOfIce.render(context);
+    penguin.render(context);
     healthBar.render(context);
     scoreBar.render(context);
-    penguin.render(context);
 }
 
 main();

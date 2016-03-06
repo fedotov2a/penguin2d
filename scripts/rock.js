@@ -41,14 +41,12 @@ var rock = {
             this._rock[i].x -= game.speed;
 
             if (this.isHit(this._rock[i].x + this.targetX, this.y + this.targetY)) {
-                penguin.message = 'АЙ!';
                 penguin.isHurt = true;
-
+                healthBar.isHitEnemy = true;
                 this._rock.splice(i, 1);
                 i--;
                 length--;
                 continue;
-                //console.log('HIT ROCK');
             }
 
             if (this._rock[i].x < -70) {

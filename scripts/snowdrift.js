@@ -42,10 +42,8 @@ var snowdrift = {
             this._snowdrift[i].x -= game.speed;
 
             if (this.isHit(this._snowdrift[i].x + this.targetX, this.y + this.targetY)) {
-                penguin.message = 'ОЙ!';
-                //console.log('HIT SNOWDRIFT');
                 penguin.isHurt = true;
-
+                healthBar.isHitEnemy = true;
                 this._snowdrift.splice(i, 1);
                 i--;
                 length--;

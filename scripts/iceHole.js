@@ -41,11 +41,8 @@ var iceHole = {
             this._iceHole[i].x -= game.speed;
 
             if (this.isHit(this._iceHole[i].x + this.targetX, this.y + this.targetY)) {
-                penguin.message = 'Ы!';
-                //console.log('HIT ICE-HOLE');
-
                 penguin.isHurt = true;
-
+                healthBar.isHitEnemy = true;
                 this._iceHole.splice(i, 1);
                 i--;
                 length--;

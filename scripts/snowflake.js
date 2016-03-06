@@ -42,8 +42,7 @@ var snowflake = {
             this._snowflake[i].x -= game.speed;
 
             if (this.isHit(this._snowflake[i].x + this.targetX, this.y + this.targetY)) {
-                penguin.message = 'ХВАТЬ!';
-                //console.log('HIT SNOWDRIFT');
+                scoreBar.score += 10;
                 this._snowflake.splice(i, 1);
                 i--;
                 length--;

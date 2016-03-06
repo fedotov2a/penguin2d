@@ -1,6 +1,6 @@
 var icecream = {
     _icecream: [],
-    repeat: 5020,
+    repeat: 100,
 
     x: 0,
     y: game.groundLayer,
@@ -42,9 +42,7 @@ var icecream = {
             this._icecream[i].x -= game.speed;
 
             if (this.isHit(this._icecream[i].x + this.targetX, this.y + this.targetY)) {
-                penguin.message = 'НЯМ!';
-                //console.log('HIT SNOWDRIFT');
-
+                healthBar.isHitIcecream = true;
                 this._icecream.splice(i, 1);
                 i--;
                 length--;
