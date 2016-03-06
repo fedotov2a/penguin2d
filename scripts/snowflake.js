@@ -1,6 +1,6 @@
 var snowflake = {
     _snowflake: [],
-    repeat: 600,
+    repeat: 500,
 
     x: 0,
     y: game.groundLayer,

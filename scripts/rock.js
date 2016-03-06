@@ -1,6 +1,6 @@
 var rock = {
     _rock: [],
-    repeat: 100,
+    repeat: 1117,
 
     x: 0,
     y: game.groundLayer,

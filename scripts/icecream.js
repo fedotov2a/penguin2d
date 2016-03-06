@@ -1,6 +1,6 @@
 var icecream = {
     _icecream: [],
-    repeat: 100,
+    repeat: 4000,
 
     x: 0,
     y: game.groundLayer,

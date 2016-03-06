@@ -1,6 +1,6 @@
 var pieceOfIce = {
     _pieceOfIce: [],
-    repeat: 8000,
+    repeat: 5000,
 
     x: 0,
     y: game.groundLayer,

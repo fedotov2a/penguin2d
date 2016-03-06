@@ -15,7 +15,17 @@ var penguin = {
         new Sprite(image, 917, 108, 98, 99),
 
         /* animate for hurt */
-        new Sprite(image, 1091, 0, 95, 100)
+        new Sprite(image, 1091, 0, 95, 100),
+
+        /* animate for god mode */
+        new Sprite(image, 723, 325, 105, 96),
+        new Sprite(image, 841, 344, 120, 79),
+
+        /* animate for fallen */
+        new Sprite(image, 722, 218, 88, 100),
+        new Sprite(image, 815, 217, 89, 101),
+        new Sprite(image, 909, 218, 99, 101),
+        new Sprite(image, 1011, 216, 101, 89)
     ],
 
     frame: 0,
