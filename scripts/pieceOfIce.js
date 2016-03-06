@@ -1,6 +1,6 @@
 var pieceOfIce = {
     _pieceOfIce: [],
-    repeat: 5000,
+    repeat: 100,
 
     x: 0,
     y: game.groundLayer,
@@ -42,6 +42,7 @@ var pieceOfIce = {
             this._pieceOfIce[i].x -= game.speed;
 
             if (this.isHit(this._pieceOfIce[i].x + this.targetX, this.y + this.targetY)) {
+                penguin.isGodMode = true;
                 this._pieceOfIce.splice(i, 1);
                 i--;
                 length--;

@@ -41,8 +41,10 @@ var rock = {
             this._rock[i].x -= game.speed;
 
             if (this.isHit(this._rock[i].x + this.targetX, this.y + this.targetY)) {
-                penguin.isHurt = true;
-                healthBar.isHitEnemy = true;
+                if (!penguin.isGodMode) {
+                    penguin.isHurt = true;
+                    healthBar.isHitEnemy = true;
+                }
                 this._rock.splice(i, 1);
                 i--;
                 length--;

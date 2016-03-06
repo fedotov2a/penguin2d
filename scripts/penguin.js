@@ -33,11 +33,18 @@ var penguin = {
     animationMove: [0, 1, 2, 3],
     animationJump: [4, 5, 6],
     animationHurt: [7, 7],
+    animationGodMode: [8, 9, 9, 9],
+    animationFallen: [10, 11, 12, 13],
     speedAnimationMove: 15,
     speedAnimationJump: 10,
     speedAnimationHurt: 10,
+    speedAnimationGodMode: 10,
+    speedAnimationFallen: 10,
     isHurt: false,
+    isGodMode: false,
+
     hurtFrame: 0,
+    godModeFrame: 0,
 
     targetX: 100,
     targetY: 10,
@@ -66,6 +73,13 @@ var penguin = {
             }
             this.frame += (game.frames % this.speedAnimationHurt === 0) ? 1 : 0;
             this.frame %= this.animationHurt.length;
+        } else if (this.isGodMode) {
+            game.speed = 10;
+            if (!this.isJump()) {
+                this.y = game.groundLayer;
+            }
+            this.frame += (game.frames % this.speedAnimationGodMode === 0) ? 1 : 0;
+            this.frame %= this.animationGodMode.length;
         } else if (this.isJump()) {
             this.frame += (game.frames % this.speedAnimationJump === 0) ? 1 : 0;
             this.frame %= this.animationJump.length;
@@ -87,6 +101,15 @@ var penguin = {
             }
             this.hurtFrame++;
             i = this.animationHurt[this.frame];
+            this.sprite[i].draw(context, 60, -45);
+        } else if (this.isGodMode) {
+            if (this.godModeFrame === 600) {
+                this.godModeFrame = 0;
+                game.speed = 3.8;
+                this.isGodMode = false;
+            }
+            this.godModeFrame++;
+            i = this.animationGodMode[this.frame];
             this.sprite[i].draw(context, 60, -45);
         } else if (this.isJump()) {
             i = this.animationJump[this.frame];
