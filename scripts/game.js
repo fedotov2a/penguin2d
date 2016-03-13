@@ -23,7 +23,7 @@ var game = {
     groundLayer: 0,
     differenceHeight: 120,
     
-    currentState: state.GAME,
+    currentState: state.START,
 
     init: function() {
         this.groundLayer = this.height - this.differenceHeight;
@@ -43,6 +43,31 @@ var game = {
         context = canvas.getContext('2d');
         // context.scale(game.width / 500, game.height / 400);
         document.getElementById('my-canvas').appendChild(canvas);
+
+
+        menu.bgImage.src = "./scripts/resource/bg.png";
+        menu.bgImage.onload = function(){ context.drawImage(menu.bgImage, 0, 0) };
+
+        menu.logoImage.src = "./scripts/resource/logo.png";
+        menu.logoImage.onload = function(){ context.drawImage(menu.logoImage, 170, 10) };
+
+        menu.playImage.src = "./scripts/resource/play.png";
+        menu.playClickImage.src = "./scripts/resource/play_click.png";
+        menu.playImage.onload = function(){ context.drawImage(menu.playImage, menu.buttonX[0], menu.buttonY[0]) };
+
+        menu.rulesImage.src = "./scripts/resource/rules.png";
+        menu.rulesClickImage.src = "./scripts/resource/rules_click.png";
+        menu.rulesImage.onload = function(){ context.drawImage(menu.rulesImage, menu.buttonX[1], menu.buttonY[1]) };
+
+        menu.muteOffButton.src = "./scripts/resource/muteOff.png";
+        menu.muteOnButton.src = "./scripts/resource/muteOn.png";
+        menu.muteOnButton.onload = function(){ context.drawImage(menu.muteOnButton, menu.buttonX[2], menu.buttonY[2]) };
+
+        menu.timerId = setInterval("update()", 1000/menu.framesMenu);
+        canvas.addEventListener("mousemove", menu.checkPos);
+        canvas.addEventListener("mouseup", menu.checkClick);
+
+        menu.framesMenu = this.speed;
 
         image.src = sprites;
         image.onload = function() {
@@ -94,7 +119,7 @@ function update() {
 
 function render() {
     if (game.currentState === state.START) {
-
+        menu.render(context);
     } else if (game.currentState === state.GAME) {
         background.render(context);
         rock.render(context);
