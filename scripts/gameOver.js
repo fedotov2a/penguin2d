@@ -1,4 +1,14 @@
+/**
+* Объект Конец игры.
+* 
+* @constructor
+*/
 gameOver = {
+	/**
+	* Отрисовывает экран конца игры.
+	*
+	* @param {CanvasRenderingContext2D} context место для рисования.  
+ 	*/
 	render: function(context) {
 		context.fillStyle="#0000bb";
 		context.fillRect(0, 0, 720, 480);

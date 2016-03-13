@@ -1,14 +1,13 @@
 /**
- * Sprite class
+ * Создает экземпляр Sprite
  *
- * @author Alexander Fedotov
+ * @param {Image} image картинка со спрайтами
+ * @param {number} x - позиция спрайта по оси X
+ * @param {number} y - позиция спрайта по оси Y
+ * @param {number} width  ширина спрайта
+ * @param {number} height высота спрайта
  *
- * @this {Sprite}
- * @param {Image}  image    spritesheet image
- * @param {number} x      x-position in spritesheet
- * @param {number} y      y-position in spritesheet
- * @param {number} width  width of sprite 
- * @param {number} height height of sprite
+ * @constructor
  */
 function Sprite(image, x, y, width, height) {
     this.image = image;
@@ -16,17 +15,14 @@ function Sprite(image, x, y, width, height) {
     this.y = y;
     this.width = width;
     this.height = height;
-};
+}
 
 /**
- * Draw sprite the canvas context
+ * Отрисовывает спрайт на канвас
  *
- * @author Alexander Fedotov
- *
- * @this {Sprite}
- * @param  {CanvasRenderingContext2D} ctx context used for drawing
- * @param  {number} x   x-position on canvas to draw from
- * @param  {number} y   y-position on canvas to draw from
+ * @param  {CanvasRenderingContext2D} context место для рисования.
+ * @param  {number} x позиция по оси X для отрисовки спрайта
+ * @param  {number} y позиция по оси Y для отрисовки спрайта
  */
 Sprite.prototype.draw = function(context, x, y) {
     context.drawImage(this.image, this.x, this.y, this.width, this.height, x, y, this.width, this.height);

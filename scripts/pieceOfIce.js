@@ -1,3 +1,10 @@
+/**
+* Объект "Льдинка".
+*
+* Содержит описание и поведение Льдинки в игре.
+*
+* @constructor
+*/
 var pieceOfIce = {
     _pieceOfIce: [],
     repeat: 900,
@@ -11,23 +18,19 @@ var pieceOfIce = {
 
     sprite: new Sprite(image, 1136, 116, 48, 60),
 
+    /**
+    * Очищает массив объектов "Льдинка".
+    *
+    */
     reset: function () {
         this._pieceOfIce = [];
     },
 
-    isHit: function(pieceOfIceX, pieceOfIceY) {
-        var x = (penguin.targetX - pieceOfIceX) * (penguin.targetX - pieceOfIceX);
-        var y = (penguin.y + penguin.targetY - pieceOfIceY) * (penguin.y + penguin.targetY - pieceOfIceY);
-        var r = (this.radius + penguin.radius) * (this.radius + penguin.radius);
-
-        if (x + y <= r) {
-            return true;
-        }
-        return false;
-    },
-
+    /**
+    * Обновляет положение объекта "Льдинка" в игре.
+    *
+    */
     update: function() {
-
         if (game.frames % this.repeat === 0) {
             var _x = game.width + (this.sprite.width + 200 * Math.random());
             this._pieceOfIce.push({
@@ -41,7 +44,7 @@ var pieceOfIce = {
         for (var i = 0, length = this._pieceOfIce.length; i < length; i++) {
             this._pieceOfIce[i].x -= game.speed;
 
-            if (this.isHit(this._pieceOfIce[i].x + this.targetX, this.y + this.targetY)) {
+            if (penguin.isHit(this._pieceOfIce[i].x + this.targetX, this.y + this.targetY, this.radius)) {
                 penguin.isGodMode = true;
                 this._pieceOfIce.splice(i, 1);
                 i--;
@@ -57,6 +60,11 @@ var pieceOfIce = {
         }
     },
 
+    /**
+    * Отрисовывает объект "Льдинка" в игре.
+    *
+    * @param {CanvasRenderingContext2D} context место для рисования.
+    */
     render: function(context) {
         for (var i = 0, length = this._pieceOfIce.length; i < length; i++) {
             this.sprite.draw(context, this._pieceOfIce[i].x, this._pieceOfIce[i].y);
