@@ -1,3 +1,10 @@
+/**
+* Объект "Сугроб".
+*
+* Содержит описание и поведение Сугроба в игре.
+*
+* @constructor
+*/
 var snowdrift = {
     _snowdrift: [],
     repeat: 1301,
@@ -11,23 +18,19 @@ var snowdrift = {
 
     sprite: new Sprite(image, 969, 358, 110, 110),
 
+    /**
+    * Очищает массив объектов "Сугроб".
+    *
+    */
     reset: function () {
         this._snowdrift = [];
     },
 
-    isHit: function(snowdriftX, snowdriftY) {
-        var x = (penguin.targetX - snowdriftX) * (penguin.targetX - snowdriftX);
-        var y = (penguin.y + penguin.targetY - snowdriftY) * (penguin.y + penguin.targetY - snowdriftY);
-        var r = (this.radius + penguin.radius) * (this.radius + penguin.radius);
-
-        if (x + y <= r) {
-            return true;
-        }
-        return false;
-    },
-
+    /**
+    * Обновляет положение объекта "Сугроб" в игре.
+    *
+    */
     update: function() {
-
         if (game.frames % this.repeat === 0) {
             var _x = game.width + (this.sprite.width + 200 * Math.random());
             this._snowdrift.push({
@@ -41,15 +44,16 @@ var snowdrift = {
         for (var i = 0, length = this._snowdrift.length; i < length; i++) {
             this._snowdrift[i].x -= game.speed;
 
-            if (this.isHit(this._snowdrift[i].x + this.targetX, this.y + this.targetY)) {
+            if (penguin.isHit(this._snowdrift[i].x + this.targetX, this.y + this.targetY, this.radius)) {
                 if (!penguin.isGodMode) {
                     penguin.isHurt = true;
                     healthBar.isHitEnemy = true;
+
+                    this._snowdrift.splice(i, 1);
+                    i--;
+                    length--;
+                    continue;
                 }
-                this._snowdrift.splice(i, 1);
-                i--;
-                length--;
-                continue;
             }
 
             if (this._snowdrift[i].x < -70) {
@@ -60,6 +64,11 @@ var snowdrift = {
         }
     },
 
+    /**
+    * Отрисовывает объект "Сугроб" в игре.
+    *
+    * @param {CanvasRenderingContext2D} context место для рисования.
+    */
     render: function(context) {
         for (var i = 0, length = this._snowdrift.length; i < length; i++) {
             this.sprite.draw(context, this._snowdrift[i].x, this._snowdrift[i].y);

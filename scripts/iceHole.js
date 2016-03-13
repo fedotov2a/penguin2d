@@ -1,3 +1,10 @@
+/**
+* Объект "Прорубь".
+*
+* Содержит описание и поведение Проруби в игре.
+*
+* @constructor
+*/
 var iceHole = {
     _iceHole: [],
     repeat: 907,
@@ -11,21 +18,18 @@ var iceHole = {
 
     sprite: new Sprite(image, 855, 446, 105, 25),
 
+    /**
+    * Очищает массив объектов "Прорубь".
+    *
+    */
     reset: function () {
         this._iceHole = [];
     },
 
-    isHit: function(iceHoleX, iceHoleY) {
-        var x = (penguin.targetX - iceHoleX) * (penguin.targetX - iceHoleX);
-        var y = (penguin.y + penguin.targetY - iceHoleY) * (penguin.y + penguin.targetY - iceHoleY);
-        var r = (this.radius + penguin.radius) * (this.radius + penguin.radius);
-
-        if (x + y <= r) {
-            return true;
-        }
-        return false;
-    },
-
+    /**
+    * Обновляет положение объекта "Сугроб" в игре.
+    *
+    */
     update: function() {
         if (game.frames % this.repeat === 0) {
             var _x = game.width + (this.sprite.width + 250 * Math.random());
@@ -40,15 +44,17 @@ var iceHole = {
         for (var i = 0, length = this._iceHole.length; i < length; i++) {
             this._iceHole[i].x -= game.speed;
 
-            if (this.isHit(this._iceHole[i].x + this.targetX, this.y + this.targetY)) {
+            if (penguin.isHit(this._iceHole[i].x + this.targetX, this.y + this.targetY, this.radius)) {
                 if (!penguin.isGodMode) {
                     penguin.isHurt = true;
+                    //penguin.isFell = true;
                     healthBar.isHitEnemy = true;
+
+                    this._iceHole.splice(i, 1);
+                    i--;
+                    length--;
+                    continue;
                 }
-                this._iceHole.splice(i, 1);
-                i--;
-                length--;
-                continue;
             }
 
             if (this._iceHole[i].x < -70) {
@@ -59,6 +65,11 @@ var iceHole = {
         }
     },
 
+    /**
+    * Отрисовывает объект "Сугроб" в игре.
+    *
+    * @param {CanvasRenderingContext2D} context место для рисования.
+    */
     render: function(context) {
         for (var i = 0, length = this._iceHole.length; i < length; i++) {
             this.sprite.draw(context, this._iceHole[i].x, this._iceHole[i].y);

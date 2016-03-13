@@ -1,3 +1,10 @@
+/**
+* Объект "Мороженое".
+*
+* Содержит описание и поведение Мороженого в игре.
+* 
+* @constructor
+*/
 var icecream = {
     _icecream: [],
     repeat: 1000,
@@ -11,23 +18,19 @@ var icecream = {
 
     sprite: new Sprite(image, 1021, 116, 43, 60),
 
+    /**
+    * Очищает массив объектов "Мороженое".
+    *
+    */
     reset: function () {
         this._icecream = [];
     },
 
-    isHit: function(icecreamX, icecreamY) {
-        var x = (penguin.targetX - icecreamX) * (penguin.targetX - icecreamX);
-        var y = (penguin.y + penguin.targetY - icecreamY) * (penguin.y + penguin.targetY - icecreamY);
-        var r = (this.radius + penguin.radius) * (this.radius + penguin.radius);
-
-        if (x + y <= r) {
-            return true;
-        }
-        return false;
-    },
-
+    /**
+    * Обновляет положение объекта "Мороженое" в игре.
+    *
+    */
     update: function() {
-
         if (game.frames % this.repeat === 0) {
             var _x = game.width + (this.sprite.width + 200 * Math.random());
             this._icecream.push({
@@ -41,7 +44,7 @@ var icecream = {
         for (var i = 0, length = this._icecream.length; i < length; i++) {
             this._icecream[i].x -= game.speed;
 
-            if (this.isHit(this._icecream[i].x + this.targetX, this.y + this.targetY)) {
+            if (penguin.isHit(this._icecream[i].x + this.targetX, this.y + this.targetY, this.radius)) {
                 healthBar.isHitIcecream = true;
                 this._icecream.splice(i, 1);
                 i--;
@@ -57,6 +60,11 @@ var icecream = {
         }
     },
 
+    /**
+    * Отрисовывает объект "Сугроб" в игре.
+    *
+    * @param {CanvasRenderingContext2D} context место для рисования.
+    */
     render: function(context) {
         for (var i = 0, length = this._icecream.length; i < length; i++) {
             this.sprite.draw(context, this._icecream[i].x, this._icecream[i].y);

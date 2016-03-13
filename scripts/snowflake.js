@@ -1,3 +1,10 @@
+/**
+* Объект "Снежинка".
+*
+* Содержит описание и поведение Снежинки в игре.
+*
+* @constructor
+*/
 var snowflake = {
     _snowflake: [],
     repeat: 500,
@@ -11,23 +18,19 @@ var snowflake = {
 
     sprite: new Sprite(image, 1069, 116, 62, 62),
 
+    /**
+    * Очищает массив объектов "Мороженое".
+    *
+    */
     reset: function () {
         this._snowflake = [];
     },
 
-    isHit: function(snowflakeX, snowflakeY) {
-        var x = (penguin.targetX - snowflakeX) * (penguin.targetX - snowflakeX);
-        var y = (penguin.y + penguin.targetY - snowflakeY) * (penguin.y + penguin.targetY - snowflakeY);
-        var r = (this.radius + penguin.radius) * (this.radius + penguin.radius);
-
-        if (x + y <= r) {
-            return true;
-        }
-        return false;
-    },
-
+    /**
+    * Обновляет положение объекта "Мороженое" в игре.
+    *
+    */
     update: function() {
-
         if (game.frames % this.repeat === 0) {
             var _x = game.width + (this.sprite.width + 200 * Math.random());
             this._snowflake.push({
@@ -41,7 +44,7 @@ var snowflake = {
         for (var i = 0, length = this._snowflake.length; i < length; i++) {
             this._snowflake[i].x -= game.speed;
 
-            if (this.isHit(this._snowflake[i].x + this.targetX, this.y + this.targetY)) {
+            if (penguin.isHit(this._snowflake[i].x + this.targetX, this.y + this.targetY, this.radius)) {
                 scoreBar.score += 10;
                 this._snowflake.splice(i, 1);
                 i--;
@@ -57,6 +60,11 @@ var snowflake = {
         }
     },
 
+    /**
+    * Отрисовывает объект "Сугроб" в игре.
+    *
+    * @param {CanvasRenderingContext2D} context место для рисования.
+    */
     render: function(context) {
         for (var i = 0, length = this._snowflake.length; i < length; i++) {
             this.sprite.draw(context, this._snowflake[i].x, this._snowflake[i].y);

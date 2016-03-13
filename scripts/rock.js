@@ -1,3 +1,9 @@
+/**
+* Объект "Камень".
+*
+* Содержит описание и поведение Камня в игре.
+* @constructor
+*/
 var rock = {
     _rock: [],
     repeat: 733,
@@ -11,21 +17,18 @@ var rock = {
 
     sprite: new Sprite(image, 1095, 361, 110, 110),
 
+    /**
+    * Очищает массив объектов "Камень".
+    *
+    */
     reset: function () {
         this._rock = [];
     },
 
-    isHit: function(rockX, rockY) {
-        var x = (penguin.targetX - rockX) * (penguin.targetX - rockX);
-        var y = (penguin.y + penguin.targetY - rockY) * (penguin.y + penguin.targetY - rockY);
-        var r = (this.radius + penguin.radius) * (this.radius + penguin.radius);
-
-        if (x + y <= r) {
-            return true;
-        }
-        return false;
-    },
-
+    /**
+    * Обновляет положение объекта "Камень" в игре.
+    *
+    */
     update: function() {
         if (game.frames % this.repeat === 0) {
             this.x = game.width + (this.sprite.width + 500 * Math.random());
@@ -40,15 +43,16 @@ var rock = {
         for (var i = 0, length = this._rock.length; i < length; i++) {
             this._rock[i].x -= game.speed;
 
-            if (this.isHit(this._rock[i].x + this.targetX, this.y + this.targetY)) {
+            if (penguin.isHit(this._rock[i].x + this.targetX, this.y + this.targetY, this.radius)) {
                 if (!penguin.isGodMode) {
                     penguin.isHurt = true;
                     healthBar.isHitEnemy = true;
+
+                    this._rock.splice(i, 1);
+                    i--;
+                    length--;
+                    continue;
                 }
-                this._rock.splice(i, 1);
-                i--;
-                length--;
-                continue;
             }
 
             if (this._rock[i].x < -70) {
@@ -59,6 +63,11 @@ var rock = {
         }
     },
 
+    /**
+    * Отрисовывает объект "Камень" в игре.
+    *
+    * @param {CanvasRenderingContext2D} context место для рисования.
+    */
     render: function(context) {
         for (var i = 0, length = this._rock.length; i < length; i++) {
             this.sprite.draw(context, this._rock[i].x, this._rock[i].y);
