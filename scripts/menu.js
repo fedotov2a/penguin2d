@@ -8,6 +8,12 @@
 var menu = {
     muteOn: true,    
     
+ 
+    
+    
+    
+    authorsImage: new Image(),
+    bgImage: new Image(),    
     bgImage: new Image(),
     logoImage: new Image(),
     playImage: new Image(),
@@ -17,16 +23,16 @@ var menu = {
     muteOnButton: new Image(),  
     muteOffButton: new Image(),
 
-    isCLickPlay: false,
+    isClickPlay: false,
     isClickRules: false,
     
-    // положение кнопок по (X,Y)
-    buttonX: [180,180,655],
-    buttonY: [220,315,418],
+    // положение кнопок по (X,Y) [Play,Rules,Mute,Authors]
+    buttonX: [180,180,637,637],
+    buttonY: [220,315,410,62],
     
-    // размер кнопок
-    buttonWidth: [321,321,321,65],
-    buttonHeight: [81,81,81,62], 
+    // размер кнопок [Play,Rules,Mute,Authors]
+    buttonWidth: [321,321,321,75],
+    buttonHeight: [81,81,81,68], 
     
     framesMenu: 1,  // вызывает баги, не менять!
     timerId: 0,
@@ -39,13 +45,14 @@ var menu = {
     * @param {CanvasRenderingContext2D} context место для рисования.
     */
     render: function(context) {
+    
         context.clearRect(0, 0, game.width, game.height);
         context.drawImage(this.bgImage, 0, 0);
         context.drawImage(this.logoImage, 170,10);
         context.drawImage(this.playImage, this.buttonX[0], this.buttonY[0]);
-        if (this.isCLickPlay) {
+        if (this.isClickPlay) {
             context.drawImage(this.playClickImage, this.buttonX[0], this.buttonY[0]);
-            this.isCLickPlay = false;
+            this.isClickPlay = false;
         }
 
         context.drawImage(this.rulesImage, this.buttonX[1], this.buttonY[1]);
@@ -66,14 +73,16 @@ var menu = {
     * @param {Event} mouseEvent событие мыши.
     */
     checkClick: function(mouseEvent){
+        
+//           canvas.addEventListener("mousemove", checkPos);
+//	       canvas.addEventListener("mouseup", checkClick);
+        
             // кнопка Играть (Play)
             // console.log(mouseEvent.offsetX + " " + mouseEvent.offsetY);
             if(mouseEvent.offsetX > menu.buttonX[0] && mouseEvent.offsetX < menu.buttonX[0] + menu.buttonWidth[0]){
                 if(mouseEvent.offsetY > menu.buttonY[0] && mouseEvent.offsetY < menu.buttonY[0] + menu.buttonHeight[0]){
-                    menu.isCLickPlay = true;
+                    menu.isClickPlay = true;
                     
-                    // menu.fadeId = setInterval("menu.fadeOut()", 1000/menu.framesMenu);
-                    // clearInterval(menu.timerId);
                     // canvas.removeEventListener("mousemove", menu.checkPos);
                     // canvas.removeEventListener("mouseup", menu.checkClick);
 
@@ -85,9 +94,9 @@ var menu = {
             if(mouseEvent.offsetX > menu.buttonX[1] && mouseEvent.offsetX < menu.buttonX[1] + menu.buttonWidth[1]){
                 if(mouseEvent.offsetY > menu.buttonY[1] && mouseEvent.offsetY < menu.buttonY[1] + menu.buttonHeight[1]){
                     menu.isClickRules = true;
-                    // context.drawImage(menu.rulesClickImage, menu.buttonX[1], menu.buttonY[1]);
-                    //menu.fadeId = setInterval("menu.fadeOut()", 1000/menu.framesMenu);
-                    //clearInterval(menu.timerId);
+                    console.log(menu.isClickRules);
+                    game.currentState = state.RULES;
+                    
                     // canvas.removeEventListener("mousemove", menu.checkPos);
                     // canvas.removeEventListener("mouseup", menu.checkClick);
                 }
@@ -100,32 +109,15 @@ var menu = {
                             context.clearRect(menu.buttonX[2], menu.buttonY[2], menu.buttonWidth[3], menu.buttonHeight[3]);
                             context.drawImage(menu.muteOffButton, menu.buttonX[2], menu.buttonY[2]);
                             menu.muteOn = false;
-                            //clearInterval(menu.timerId);
                             
                         } else {
                             context.clearRect(menu.buttonX[2], menu.buttonY[2], menu.buttonWidth[3], menu.buttonHeight[3]);
                             context.drawImage(menu.muteOnButton, menu.buttonX[2], menu.buttonY[2]);
                             menu.muteOn = true;
-                           //clearInterval(menu.timerId);
                         }
                 }
             }
             
             
     },
-        
-    // // Затемнение экрана
-    // fadeOut: function(){
-    //     context.fillStyle = "rgba(0,0,0, 0.2)";
-    //     context.fillRect (0, 0, game.width, game.height);
-    //     menu.time += 0.1;
-    //     if(menu.time >= 2){
-    //         clearInterval(this.fadeId);
-    //         menu.time = 0.0;
-    //         menu.timerId = setInterval("menu.render(context)", 1000/menu.framesMenu);
-    //         canvas.addEventListener("mousemove", menu.checkPos);
-    //         canvas.addEventListener("mouseup", menu.checkClick);
-    //     }
-    // }
-
 };

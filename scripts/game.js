@@ -17,7 +17,8 @@ var
 var state = {
     START: 0, 
     GAME: 1,
-    GAME_OVER: 2
+    GAME_OVER: 2,
+    RULES: 3
 };
 
 /**
@@ -82,12 +83,17 @@ var game = {
         menu.muteOnButton.src = "./scripts/resource/muteOn.png";
         menu.muteOnButton.onload = function(){ context.drawImage(menu.muteOnButton, menu.buttonX[2], menu.buttonY[2]) };
 
-        menu.timerId = setInterval("update()", 1000/menu.framesMenu);
-        canvas.addEventListener("mousemove", menu.checkPos);
+        gameOver.init();
+        
+//        menu.timerId = setInterval("update()", 1000/menu.framesMenu);
+//        canvas.addEventListener("mousemove", menu.checkPos);
         canvas.addEventListener("mouseup", menu.checkClick);
-
+//        canvas.addEventListener("mouseup", gameOver.checkClick);
+//        menu.framesMenu = this.speed;
+      
         menu.framesMenu = this.speed;
-
+        // gameOver.framesGameOver = this.speed;
+        
         image.src = sprites;
         image.onload = function() {
             run();
@@ -163,6 +169,8 @@ function update() {
         healthBar.update();
     } else if (game.currentState === state.GAME_OVER) {
 
+    } else if (game.currentState === state.RULES) {
+        
     }
 }
 
@@ -184,8 +192,11 @@ function render() {
         penguin.render(context);
         healthBar.render(context);
         scoreBar.render(context);
+        
     } else if (game.currentState === state.GAME_OVER) {
         gameOver.render(context);
+    } else if (game.currentState === state.RULES) {
+        rules.render(context);
     }
 }
 
