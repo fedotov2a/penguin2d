@@ -1,19 +1,8 @@
-<<<<<<< HEAD
-gameOver = {   
-    
+gameOver = {
     endImage: new Image(),
     retryImage: new Image(),
     retryClickImage: new Image(),
 
-=======
-gameOver= {   
-    
-    overImage: new Image(),
-    retryImage: new Image(),
-    retryClickImage: new Image(),
-
-    
->>>>>>> gh-pages
     // положение кнопки по (X,Y) [Retry]
     buttonX: [310],
     buttonY: [320],
@@ -24,18 +13,12 @@ gameOver= {
         
 
     init: function() {
-<<<<<<< HEAD
         gameOver.endImage.src = "./scripts/resource/end_page.png";
-=======
-        gameOver.overImage.src = "./scripts/resource/end_page.png";
-        
->>>>>>> gh-pages
         gameOver.retryImage.src = "./scripts/resource/retry.png";
         gameOver.retryClickImage.src = "./scripts/resource/retry_click.png";
     },
     
     render: function(context) {
-<<<<<<< HEAD
         context.clearRect(0, 0, game.width, game.height);
         context.drawImage(this.endImage, 0, 0);
         context.drawImage(this.retryImage, gameOver.buttonX[0], gameOver.buttonY[0]);
@@ -97,34 +80,4 @@ gameOver= {
             }
         }
     }
-=======
-        //this.clear(context);
-        this.draw(context);
-    },
-    
-    
-    clear: function(context) {
-        context.clearRect(0, 0, game.width, game.height);
-    },
-    
-    
-    draw: function(context){
-        context.drawImage(this.overImage, 0, 0);
-        context.drawImage(this.retryImage, gameOver.buttonX[0], gameOver.buttonY[0]);
-    },
-    
-    // Нажатие кнопок
-    checkClick: function(mouseEvent){
-            
-            console.log(mouseEvent.offsetX + " " + mouseEvent.offsetY);
-            
-        // кнопка Ещё (Retry)
-            if(mouseEvent.offsetX > gameOver.buttonX[0] && mouseEvent.offsetX < gameOver.buttonX[0] + gameOver.buttonWidth[0]){
-                if(mouseEvent.offsetY > gameOver.buttonY[0] && mouseEvent.offsetY < gameOver.buttonY[0] + gameOver.buttonHeight[0]){
-                   game.currentState = state.GAME; // switch state
-                }
-            }
-    }
-
->>>>>>> gh-pages
 };
