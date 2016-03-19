@@ -60,9 +60,9 @@ var penguin = {
     godModeFrame: 0,
     deathFrame: 0,
 
-    targetX: 100,
-    targetY: 10,
-    radius: 40,
+    targetX: 105,
+    targetY: 20,
+    radius: 45,
 
     _jump: 11,
 

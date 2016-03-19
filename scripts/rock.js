@@ -11,7 +11,7 @@ var rock = {
     x: 0,
     y: game.groundLayer,
 
-    targetX: 48,
+    targetX: 55,
     targetY: 18,
     radius: 47,
 
