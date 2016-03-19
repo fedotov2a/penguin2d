@@ -32,7 +32,6 @@ var game = {
     width: 720,
     height: 480,
     speed: 3.5,
-    bestScore: localStorage['bestScore'] || 0,
     frames: 0,
     gravity: 0.35,
     groundLayer: 0,
@@ -46,6 +45,9 @@ var game = {
     *
     */
     init: function() {
+        if (localStorage['bestScore'] === undefined){
+            localStorage['bestScore'] = 0;
+        }
         this.groundLayer = this.height - this.differenceHeight;
         canvas = document.createElement('canvas');
         canvas.style.border = '1px solid #000';
@@ -81,8 +83,7 @@ var game = {
 
         menu.muteOffButton.src = "./scripts/resource/muteOff.png";
         menu.muteOnButton.src = "./scripts/resource/muteOn.png";
-        menu.muteOnButton.onload = function(){ context.drawImage(menu.muteOnButton, menu.buttonX[2], menu.buttonY[2]) };
-
+        menu.muteOnButton.onload = function(){ context.drawImage(menu.muteOnButton, menu.buttonX[2], menu.buttonY[2]) };      
         gameOver.init();
         rules.init();
         
