@@ -10,25 +10,27 @@ var menu = {
 
     authorsImage: new Image(),
     bgImage: new Image(),    
-    bgImage: new Image(),
     logoImage: new Image(),
     playImage: new Image(),
     playClickImage: new Image(),
     rulesImage: new Image(),
     rulesClickImage: new Image(),
+    aboutImage: new Image(),
+    aboutClickImage: new Image(),
     muteOnButton: new Image(),  
     muteOffButton: new Image(),
 
     isClickPlay: false,
     isClickRules: false,
+    isClickAbout: false,
     
     // положение кнопок по (X,Y) [Play,Rules,Mute,Authors]
     buttonX: [180,180,637,637],
-    buttonY: [220,315,410,62],
+    buttonY: [220,315,410,5],
     
     // размер кнопок [Play,Rules,Mute,Authors]
-    buttonWidth: [321,321,321,75],
-    buttonHeight: [81,81,81,68], 
+    buttonWidth: [321,321,75,75],
+    buttonHeight: [81,81,68,68], 
     
     timerId: 0,
     fadeId: 0,
@@ -60,6 +62,13 @@ var menu = {
         if (!this.muteOn) {
             context.drawImage(this.muteOffButton, this.buttonX[2], this.buttonY[2]);
         }
+        
+          context.drawImage(this.aboutImage, this.buttonX[3], this.buttonY[3]);
+        if (this.isClickAbout) {
+            context.drawImage(this.aboutClickImage, this.buttonX[3], this.buttonY[3]);
+            this.isClickAbout = false;
+        }
+        
     },
     
     /**
@@ -74,6 +83,8 @@ var menu = {
             if(mouseEvent.offsetY > menu.buttonY[0] && mouseEvent.offsetY < menu.buttonY[0] + menu.buttonHeight[0]) {
                 menu.isClickPlay = true;
                 canvas.removeEventListener("mouseup", menu.checkClick);
+                canvas.removeEventListener("mouseup", rules.checkClick);
+                canvas.removeEventListener("mouseup", about.checkClick);
                 game.currentState = state.GAME;
             }
         }
@@ -88,17 +99,29 @@ var menu = {
             }
         }
         
+          // кнопка Об авторах (About)
+        if(mouseEvent.offsetX > menu.buttonX[3] && mouseEvent.offsetX < menu.buttonX[3] + menu.buttonWidth[3]) {
+            if(mouseEvent.offsetY > menu.buttonY[3] && mouseEvent.offsetY < menu.buttonY[3] + menu.buttonHeight[3]) {
+                menu.isClickAbout = true;
+                canvas.removeEventListener('mouseup', menu.checkClick);
+                canvas.addEventListener('mouseup', rules.checkClick);
+                game.currentState = state.ABOUT;
+            }
+        }
+        
         // кнопка Вкл/Откл звука (Mute On/off)
         if(mouseEvent.offsetX > menu.buttonX[2] && mouseEvent.offsetX < menu.buttonX[2] + menu.buttonWidth[2]) {
             if(mouseEvent.offsetY > menu.buttonY[2] && mouseEvent.offsetY < menu.buttonY[2] + menu.buttonHeight[2]) {
                 if (menu.muteOn) {
                     context.clearRect(menu.buttonX[2], menu.buttonY[2], menu.buttonWidth[3], menu.buttonHeight[3]);
                     context.drawImage(menu.muteOffButton, menu.buttonX[2], menu.buttonY[2]);
+                    document.getElementById('main').pause();
                     menu.muteOn = false;
                     
                 } else {
                     context.clearRect(menu.buttonX[2], menu.buttonY[2], menu.buttonWidth[3], menu.buttonHeight[3]);
                     context.drawImage(menu.muteOnButton, menu.buttonX[2], menu.buttonY[2]);
+                    document.getElementById('main').play();
                     menu.muteOn = true;
                 }
             }

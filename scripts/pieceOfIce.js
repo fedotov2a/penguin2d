@@ -45,6 +45,7 @@ var pieceOfIce = {
             this._pieceOfIce[i].x -= game.speed;
 
             if (penguin.isHit(this._pieceOfIce[i].x + this.targetX, this._pieceOfIce[i].y + this.targetY, this.radius)) {
+                document.getElementById('ice').play();
                 penguin.isGodMode = true;
                 this._pieceOfIce.splice(i, 1);
                 i--;

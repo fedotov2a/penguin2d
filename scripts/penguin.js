@@ -72,6 +72,7 @@ var penguin = {
     */
     jump: function() {
         this.velocity = -this._jump;
+        document.getElementById('jump').play();
     },
 
     /**

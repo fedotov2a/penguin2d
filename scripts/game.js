@@ -18,7 +18,8 @@ var state = {
     MENU: 0, 
     GAME: 1,
     GAME_OVER: 2,
-    RULES: 3
+    RULES: 3,
+    ABOUT: 4
 };
 
 /**
@@ -32,7 +33,6 @@ var game = {
     width: 720,
     height: 480,
     speed: 3.5,
-    bestScore: localStorage['bestScore'] || 0,
     frames: 0,
     gravity: 0.35,
     groundLayer: 0,
@@ -46,6 +46,9 @@ var game = {
     *
     */
     init: function() {
+        if (localStorage['bestScore'] === undefined){
+            localStorage['bestScore'] = 0;
+        }
         this.groundLayer = this.height - this.differenceHeight;
         canvas = document.createElement('canvas');
         canvas.style.border = '1px solid #000';
@@ -83,8 +86,14 @@ var game = {
         menu.muteOnButton.src = "./scripts/resource/muteOn.png";
         menu.muteOnButton.onload = function(){ context.drawImage(menu.muteOnButton, menu.buttonX[2], menu.buttonY[2]) };
 
+        menu.aboutImage.src = "./scripts/resource/about.png";
+        menu.aboutClickImage.src = "./scripts/resource/about_click.png";
+        menu.aboutImage.onload = function(){ context.drawImage(menu.aboutImage, menu.buttonX[3], menu.buttonY[3]) };
+        
+        
         gameOver.init();
         rules.init();
+        about.init();
         
 //        menu.timerId = setInterval("update()", 1000/menu.framesMenu);
 //        canvas.addEventListener("mousemove", menu.checkPos);
@@ -164,6 +173,8 @@ function update() {
 
     } else if (game.currentState === state.RULES) {
         
+    } else if (game.currentState === state.ABOUT) {
+        
     }
 }
 
@@ -191,6 +202,8 @@ function render() {
         gameOver.render(context);
     } else if (game.currentState === state.RULES) {
         rules.render(context);
+    } else if (game.currentState === state.ABOUT) {
+        about.render(context);
     }
 }
 
