@@ -84,10 +84,7 @@ var game = {
         menu.muteOnButton.onload = function(){ context.drawImage(menu.muteOnButton, menu.buttonX[2], menu.buttonY[2]) };
 
         gameOver.init();
-<<<<<<< HEAD
         rules.init();
-=======
->>>>>>> gh-pages
         
 //        menu.timerId = setInterval("update()", 1000/menu.framesMenu);
 //        canvas.addEventListener("mousemove", menu.checkPos);
