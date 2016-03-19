@@ -16,7 +16,7 @@ var snowdrift = {
     targetY: 25,
     radius: 40,
 
-    sprite: new Sprite(image, 969, 358, 110, 110),
+    sprite: new Sprite(image, 961, 662, 109, 109),
 
     /**
     * Очищает массив объектов "Сугроб".
@@ -35,7 +35,7 @@ var snowdrift = {
             var _x = game.width + (this.sprite.width + 200 * Math.random());
             this._snowdrift.push({
                 x: _x,
-                y: game.groundLayer - 45,
+                y: game.groundLayer - 40,
                 width: this.sprite.width,
                 height: this.sprite.height
             });

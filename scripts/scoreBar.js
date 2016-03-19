@@ -7,7 +7,7 @@
 */
 var scoreBar = {
     score: 0,
-    sprite: new Sprite(image, 1069, 116, 62, 62),
+    sprite: new Sprite(image, 898, 711, 60, 60),
 
     /**
     * Отрисовывает объект "Панель Очков" в игре.
@@ -17,7 +17,7 @@ var scoreBar = {
     render: function(context) {
         this.sprite.draw(context, 630, 20);
         context.beginPath();
-        context.font = '40pt Calibri';
+        context.font = '40pt Helvetica';
         context.fillStyle = 'blue';
         context.fillText(this.score + " x", 550 - Math.ceil((Math.log(this.score * 100 + 10) / Math.log(10))) * 10, 65);
         context.closePath();

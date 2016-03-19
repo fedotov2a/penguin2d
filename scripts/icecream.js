@@ -13,10 +13,10 @@ var icecream = {
     y: game.groundLayer,
 
     targetX: 23,
-    targetY: -70,
+    targetY: 30,
     radius: 18,
 
-    sprite: new Sprite(image, 1021, 116, 43, 60),
+    sprite: new Sprite(image, 1226, 711, 43, 60),
 
     /**
     * Очищает массив объектов "Мороженое".
@@ -35,7 +35,7 @@ var icecream = {
             var _x = game.width + (this.sprite.width + 200 * Math.random());
             this._icecream.push({
                 x: _x,
-                y: game.groundLayer - 100,
+                y: game.groundLayer - 140,
                 width: this.sprite.width,
                 height: this.sprite.height
             });
@@ -44,7 +44,7 @@ var icecream = {
         for (var i = 0, length = this._icecream.length; i < length; i++) {
             this._icecream[i].x -= game.speed;
 
-            if (penguin.isHit(this._icecream[i].x + this.targetX, this.y + this.targetY, this.radius)) {
+            if (penguin.isHit(this._icecream[i].x + this.targetX, this._icecream[i].y + this.targetY, this.radius)) {
                 healthBar.isHitIcecream = true;
                 this._icecream.splice(i, 1);
                 i--;
@@ -69,7 +69,7 @@ var icecream = {
         for (var i = 0, length = this._icecream.length; i < length; i++) {
             this.sprite.draw(context, this._icecream[i].x, this._icecream[i].y);
             // context.beginPath();
-            // context.arc(this._icecream[i].x + this.targetX, this.y + this.targetY, this.radius, 0, 2*Math.PI, false);
+            // context.arc(this._icecream[i].x + this.targetX, this._icecream[i].y + this.targetY, this.radius, 0, 2*Math.PI, false);
             // context.lineWidth = 1;
             // context.strokeStyle = 'yellow';
             // context.stroke();

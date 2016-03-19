@@ -11,28 +11,31 @@ var penguin = {
 
     sprite: [
         /* animate for motion */
-        new Sprite(image, 722, 0, 90, 101),
-        new Sprite(image, 812, 0, 90, 101),
-        new Sprite(image, 908, 0, 90, 101),
-        new Sprite(image, 1000, 0, 90, 101),
+        new Sprite(image, 723, 3, 100, 114),
+        new Sprite(image, 824, 2, 102, 113),
+        new Sprite(image, 927, 3, 101, 114),
+        new Sprite(image, 1029, 3, 101, 114),
 
         /* animate for jump */
-        new Sprite(image, 722, 108, 88, 102),
-        new Sprite(image, 815, 108, 98, 99),
-        new Sprite(image, 917, 108, 98, 99),
+        new Sprite(image, 723, 132, 100, 114),
+        new Sprite(image, 825, 132, 111, 112),
+        new Sprite(image, 939, 131, 111, 112),
 
         /* animate for hurt */
-        new Sprite(image, 1091, 0, 95, 100),
+        new Sprite(image, 970, 260, 109, 114),
 
         /* animate for god mode */
-        new Sprite(image, 723, 325, 105, 96),
-        new Sprite(image, 841, 344, 120, 79),
+        new Sprite(image, 725, 528, 139, 131),
+        new Sprite(image, 867, 528, 140, 130),
+
+        /* animate for death */
+        new Sprite(image, 724, 390, 110, 120),
+        new Sprite(image, 835, 390, 111, 120),
+        new Sprite(image, 948, 390, 122, 118),
+        new Sprite(image, 1074, 411, 121, 100),
 
         /* animate for fallen */
-        new Sprite(image, 722, 218, 88, 100),
-        new Sprite(image, 815, 217, 89, 101),
-        new Sprite(image, 909, 218, 99, 101),
-        new Sprite(image, 1011, 216, 101, 89)
+        new Sprite(image, 970, 260, 109, 57)
     ],
 
     frame: 0,
@@ -40,6 +43,7 @@ var penguin = {
     animationMove: [0, 1, 2, 3],
     animationJump: [4, 5, 6],
     animationHurt: [7, 7],
+    animationFallen: [14, 14],
     animationGodMode: [8, 9, 9, 9],
     animationDeath: [10, 11, 12, 13],
     speedAnimationMove: 15,
@@ -56,9 +60,9 @@ var penguin = {
     godModeFrame: 0,
     deathFrame: 0,
 
-    targetX: 100,
-    targetY: 10,
-    radius: 40,
+    targetX: 105,
+    targetY: 20,
+    radius: 45,
 
     _jump: 11,
 
@@ -113,11 +117,12 @@ var penguin = {
             game.speed = 0;
             if (!this.isJump()) { 
                 this.y = game.groundLayer;
+            } 
+            if (this.isFell) {
+                this.y = game.groundLayer + 57;
             }
             this.frame += (game.frames % this.speedAnimationHurt === 0) ? 1 : 0;
             this.frame %= this.animationHurt.length;
-        } else if (this.isFell) { 
-
         } else if (this.isGodMode) {
             game.speed = 10;
             if (!this.isJump()) {
@@ -152,13 +157,16 @@ var penguin = {
             if (this.hurtFrame === 10) {
                 this.hurtFrame = 0;
                 this.isHurt = false;
+                this.isFell = false;
                 game.speed = 3.8;
             }
             this.hurtFrame++;
-            i = this.animationHurt[this.frame];
+            if (this.isFell) {
+                i = this.animationFallen[this.frame];
+            } else {
+                i = this.animationHurt[this.frame];
+            }
             this.sprite[i].draw(context, 60, -45);
-        } else if (this.isFell) { 
-            
         } else if (this.isGodMode) {
             if (this.godModeFrame === 600) {
                 this.godModeFrame = 0;
@@ -175,6 +183,9 @@ var penguin = {
             if (this.deathFrame === 30) {
                 this.deathFrame = 0;
                 game.currentState = state.GAME_OVER;
+                canvas.addEventListener('mouseup', gameOver.checkClick);
+                window.addEventListener('keydown', gameOver.onPress, false);
+                localStorage['bestScore'] = (scoreBar.score > localStorage['bestScore']) ? scoreBar.score : localStorage['bestScore'];
             }
             this.deathFrame++;
             i = this.animationDeath[this.frame];

@@ -15,7 +15,7 @@ var
 * @constructor
 */
 var state = {
-    START: 0, 
+    MENU: 0, 
     GAME: 1,
     GAME_OVER: 2,
     RULES: 3
@@ -31,14 +31,14 @@ var state = {
 var game = {
     width: 720,
     height: 480,
-    speed: 3.8,
-//    bestScore: localStorage.getItem('bestScore') || 0,
+    speed: 3.5,
+    bestScore: localStorage['bestScore'] || 0,
     frames: 0,
     gravity: 0.35,
     groundLayer: 0,
     differenceHeight: 120,
     
-    currentState: state.START,
+    currentState: state.MENU,
 
 
     /**
@@ -84,6 +84,7 @@ var game = {
         menu.muteOnButton.onload = function(){ context.drawImage(menu.muteOnButton, menu.buttonX[2], menu.buttonY[2]) };
 
         gameOver.init();
+        rules.init();
         
 //        menu.timerId = setInterval("update()", 1000/menu.framesMenu);
 //        canvas.addEventListener("mousemove", menu.checkPos);
@@ -110,21 +111,11 @@ var game = {
 function onPress(event) {
     // switch(GameState)
     if (event.keyCode == KEY_SPACE) {
-        if (game.currentState === state.START) {
+        if (game.currentState === state.MENU) {
             game.currentState = state.GAME;
         } else if (!penguin.isJump()) {
             penguin.jump();
-        } 
-        // else if (game.currentState === state.GAME_OVER) {
-        //     healthBar.sprite = [
-        //         new Sprite(image, 1021, 116, 43, 60),
-        //         new Sprite(image, 1021, 116, 43, 60),
-        //         new Sprite(image, 1021, 116, 43, 60)
-        //     ];
-        //     scoreBar.score = 0;
-        //     frames = 0;
-        //     game.currentState = state.GAME;
-        // }
+        }
     }
 }
 
@@ -154,14 +145,16 @@ function run() {
 *
 */
 function update() {
-    if (game.currentState === state.START) {
+    if (game.currentState === state.MENU) {
 
     } else if (game.currentState === state.GAME) {
         game.frames = (game.frames === 10000) ? 0 : game.frames + 1;
+        game.speed += 0.005;
         background.update();
         rock.update();
         snowdrift.update();
         iceHole.update();
+        walrus.update();
         icecream.update();
         snowflake.update();
         pieceOfIce.update();
@@ -179,13 +172,14 @@ function update() {
 *
 */
 function render() {
-    if (game.currentState === state.START) {
+    if (game.currentState === state.MENU) {
         menu.render(context);
     } else if (game.currentState === state.GAME) {
         background.render(context);
         rock.render(context);
         snowdrift.render(context);
         iceHole.render(context);
+        walrus.render(context);
         icecream.render(context);
         snowflake.render(context);
         pieceOfIce.render(context);

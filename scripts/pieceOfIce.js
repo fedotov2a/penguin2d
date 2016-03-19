@@ -13,10 +13,10 @@ var pieceOfIce = {
     y: game.groundLayer,
 
     targetX: 25,
-    targetY: -70,
+    targetY: 30,
     radius: 26,
 
-    sprite: new Sprite(image, 1136, 116, 48, 60),
+    sprite: new Sprite(image, 836, 710, 61, 61),
 
     /**
     * Очищает массив объектов "Льдинка".
@@ -35,7 +35,7 @@ var pieceOfIce = {
             var _x = game.width + (this.sprite.width + 200 * Math.random());
             this._pieceOfIce.push({
                 x: _x,
-                y: game.groundLayer - 100,
+                y: game.groundLayer - 140,
                 width: this.sprite.width,
                 height: this.sprite.height
             });
@@ -44,7 +44,7 @@ var pieceOfIce = {
         for (var i = 0, length = this._pieceOfIce.length; i < length; i++) {
             this._pieceOfIce[i].x -= game.speed;
 
-            if (penguin.isHit(this._pieceOfIce[i].x + this.targetX, this.y + this.targetY, this.radius)) {
+            if (penguin.isHit(this._pieceOfIce[i].x + this.targetX, this._pieceOfIce[i].y + this.targetY, this.radius)) {
                 penguin.isGodMode = true;
                 this._pieceOfIce.splice(i, 1);
                 i--;
@@ -69,7 +69,7 @@ var pieceOfIce = {
         for (var i = 0, length = this._pieceOfIce.length; i < length; i++) {
             this.sprite.draw(context, this._pieceOfIce[i].x, this._pieceOfIce[i].y);
             // context.beginPath();
-            // context.arc(this._pieceOfIce[i].x + this.targetX, this.y + this.targetY, this.radius, 0, 2 * Math.PI, false);
+            // context.arc(this._pieceOfIce[i].x + this.targetX, this._pieceOfIce[i].y + this.targetY, this.radius, 0, 2 * Math.PI, false);
             // context.lineWidth = 1;
             // context.strokeStyle = 'yellow';
             // context.stroke();

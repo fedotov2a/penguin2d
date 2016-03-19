@@ -11,11 +11,11 @@ var rock = {
     x: 0,
     y: game.groundLayer,
 
-    targetX: 48,
+    targetX: 55,
     targetY: 18,
     radius: 47,
 
-    sprite: new Sprite(image, 1095, 361, 110, 110),
+    sprite: new Sprite(image, 723, 662, 110, 110),
 
     /**
     * Очищает массив объектов "Камень".
@@ -34,7 +34,7 @@ var rock = {
             this.x = game.width + (this.sprite.width + 500 * Math.random());
             this._rock.push({
                 x: rock.x,
-                y: game.groundLayer - 40,
+                y: game.groundLayer - 30,
                 width: this.sprite.width,
                 height: this.sprite.height
             });
