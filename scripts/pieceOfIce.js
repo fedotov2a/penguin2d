@@ -16,7 +16,7 @@ var pieceOfIce = {
     targetY: -70,
     radius: 26,
 
-    sprite: new Sprite(image, 1136, 116, 48, 60),
+    sprite: new Sprite(image, 836, 710, 61, 61),
 
     /**
     * Очищает массив объектов "Льдинка".

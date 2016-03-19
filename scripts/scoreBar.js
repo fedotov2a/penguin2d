@@ -7,7 +7,7 @@
 */
 var scoreBar = {
     score: 0,
-    sprite: new Sprite(image, 1069, 116, 62, 62),
+    sprite: new Sprite(image, 898, 711, 60, 60),
 
     /**
     * Отрисовывает объект "Панель Очков" в игре.

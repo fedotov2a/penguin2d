@@ -10,9 +10,9 @@ var healthBar = {
     isHitIcecream: false,
 
     sprite: [
-        new Sprite(image, 1021, 116, 43, 60),
-        new Sprite(image, 1021, 116, 43, 60),
-        new Sprite(image, 1021, 116, 43, 60)
+        new Sprite(image, 1226, 711, 43, 60),
+        new Sprite(image, 1226, 711, 43, 60),
+        new Sprite(image, 1226, 711, 43, 60)
     ],
 
     /**
@@ -28,7 +28,7 @@ var healthBar = {
             }
         } else if (this.isHitIcecream) {
             if (this.sprite.length < 3) {
-                this.sprite.splice(this.sprite.length, 0, new Sprite(image, 1021, 116, 43, 60));
+                this.sprite.splice(this.sprite.length, 0, new Sprite(image, 1226, 711, 43, 60));
             }
             this.isHitIcecream = false;
         }

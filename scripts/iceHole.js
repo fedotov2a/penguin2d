@@ -16,7 +16,7 @@ var iceHole = {
     targetY: 90,
     radius: 60,
 
-    sprite: new Sprite(image, 855, 446, 105, 25),
+    sprite: new Sprite(image, 1076, 744, 105, 25),
 
     /**
     * Очищает массив объектов "Прорубь".

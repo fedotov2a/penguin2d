@@ -4,7 +4,6 @@ gameOver = {
     retryImage: new Image(),
     retryClickImage: new Image(),
 
-    
     // положение кнопки по (X,Y) [Retry]
     buttonX: [310],
     buttonY: [320],
@@ -40,9 +39,9 @@ gameOver = {
             scoreBar.score = 0;
             penguin.isDie = false;
             healthBar.sprite = [
-                new Sprite(image, 1021, 116, 43, 60),
-                new Sprite(image, 1021, 116, 43, 60),
-                new Sprite(image, 1021, 116, 43, 60)
+                new Sprite(image, 1226, 711, 43, 60),
+                new Sprite(image, 1226, 711, 43, 60),
+                new Sprite(image, 1226, 711, 43, 60)
             ];
             game.currentState = state.GAME;
         }
@@ -56,11 +55,10 @@ gameOver = {
                 scoreBar.score = 0;
                 penguin.isDie = false;
                 healthBar.sprite = [
-                    new Sprite(image, 1021, 116, 43, 60),
-                    new Sprite(image, 1021, 116, 43, 60),
-                    new Sprite(image, 1021, 116, 43, 60)
+                    new Sprite(image, 1226, 711, 43, 60),
+                    new Sprite(image, 1226, 711, 43, 60),
+                    new Sprite(image, 1226, 711, 43, 60)
                 ];
-
                 game.currentState = state.GAME;
             }
         }

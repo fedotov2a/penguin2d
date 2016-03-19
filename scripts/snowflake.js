@@ -16,7 +16,7 @@ var snowflake = {
     targetY: -70,
     radius: 26,
 
-    sprite: new Sprite(image, 1069, 116, 62, 62),
+    sprite: new Sprite(image, 898, 711, 60, 60),
 
     /**
     * Очищает массив объектов "Мороженое".

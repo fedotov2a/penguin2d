@@ -16,7 +16,7 @@ var icecream = {
     targetY: -70,
     radius: 18,
 
-    sprite: new Sprite(image, 1021, 116, 43, 60),
+    sprite: new Sprite(image, 1226, 711, 43, 60),
 
     /**
     * Очищает массив объектов "Мороженое".
