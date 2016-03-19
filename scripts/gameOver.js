@@ -36,6 +36,7 @@ gameOver = {
     onPress: function(event) {
         if (event.keyCode === KEY_SPACE) {
             window.removeEventListener('keydown', gameOver.onPress);
+            canvas.removeEventListener('mouseup', gameOver.checkClick);
             game.frames = 0;
             game.speed = 3.5;
             scoreBar.score = 0;
@@ -60,6 +61,7 @@ gameOver = {
         if(mouseEvent.offsetX > gameOver.buttonX[0] && mouseEvent.offsetX < gameOver.buttonX[0] + gameOver.buttonWidth[0]) {
             if(mouseEvent.offsetY > gameOver.buttonY[0] && mouseEvent.offsetY < gameOver.buttonY[0] + gameOver.buttonHeight[0]) {
                 canvas.removeEventListener('mouseup', gameOver.checkClick);
+                window.removeEventListener('keydown', gameOver.onPress);
                 game.frames = 0;
                 game.speed = 3.5;
                 scoreBar.score = 0;
