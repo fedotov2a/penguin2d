@@ -38,8 +38,16 @@ gameOver = {
         if (event.keyCode === KEY_SPACE) {
             window.removeEventListener('keydown', gameOver.onPress);
             game.frames = 0;
+            game.speed = 3.5;
             scoreBar.score = 0;
             penguin.isDie = false;
+            icecream.reset();
+            iceHole.reset();
+            pieceOfIce.reset();
+            rock.reset();
+            snowdrift.reset();
+            snowflake.reset();
+            walrus.reset();
             healthBar.sprite = [
                 new Sprite(image, 1226, 711, 43, 60),
                 new Sprite(image, 1226, 711, 43, 60),
@@ -54,8 +62,16 @@ gameOver = {
             if(mouseEvent.offsetY > gameOver.buttonY[0] && mouseEvent.offsetY < gameOver.buttonY[0] + gameOver.buttonHeight[0]) {
                 canvas.removeEventListener('mouseup', gameOver.checkClick);
                 game.frames = 0;
+                game.speed = 3.5;
                 scoreBar.score = 0;
                 penguin.isDie = false;
+                icecream.reset();
+                iceHole.reset();
+                pieceOfIce.reset();
+                rock.reset();
+                snowdrift.reset();
+                snowflake.reset();
+                walrus.reset();
                 healthBar.sprite = [
                     new Sprite(image, 1226, 711, 43, 60),
                     new Sprite(image, 1226, 711, 43, 60),

@@ -31,7 +31,7 @@ var state = {
 var game = {
     width: 720,
     height: 480,
-    speed: 3.8,
+    speed: 3.5,
     bestScore: localStorage['bestScore'] || 0,
     frames: 0,
     gravity: 0.35,
@@ -149,10 +149,12 @@ function update() {
 
     } else if (game.currentState === state.GAME) {
         game.frames = (game.frames === 10000) ? 0 : game.frames + 1;
+        game.speed += 0.005;
         background.update();
         rock.update();
         snowdrift.update();
         iceHole.update();
+        walrus.update();
         icecream.update();
         snowflake.update();
         pieceOfIce.update();
@@ -177,6 +179,7 @@ function render() {
         rock.render(context);
         snowdrift.render(context);
         iceHole.render(context);
+        walrus.render(context);
         icecream.render(context);
         snowflake.render(context);
         pieceOfIce.render(context);
