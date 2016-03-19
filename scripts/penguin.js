@@ -28,11 +28,14 @@ var penguin = {
         new Sprite(image, 723, 325, 105, 96),
         new Sprite(image, 841, 344, 120, 79),
 
-        /* animate for fallen */
+        /* animate for death */
         new Sprite(image, 722, 218, 88, 100),
         new Sprite(image, 815, 217, 89, 101),
         new Sprite(image, 909, 218, 99, 101),
-        new Sprite(image, 1011, 216, 101, 89)
+        new Sprite(image, 1011, 216, 101, 89),
+
+        /* animate for fallen */
+        new Sprite(image, 1091, 0, 95, 50)
     ],
 
     frame: 0,
@@ -40,6 +43,7 @@ var penguin = {
     animationMove: [0, 1, 2, 3],
     animationJump: [4, 5, 6],
     animationHurt: [7, 7],
+    animationFallen: [14, 14],
     animationGodMode: [8, 9, 9, 9],
     animationDeath: [10, 11, 12, 13],
     speedAnimationMove: 15,
@@ -113,6 +117,9 @@ var penguin = {
             game.speed = 0;
             if (!this.isJump()) { 
                 this.y = game.groundLayer;
+            } 
+            if (this.isFell) {
+                this.y = game.groundLayer + 50;
             }
             this.frame += (game.frames % this.speedAnimationHurt === 0) ? 1 : 0;
             this.frame %= this.animationHurt.length;
@@ -152,13 +159,16 @@ var penguin = {
             if (this.hurtFrame === 10) {
                 this.hurtFrame = 0;
                 this.isHurt = false;
+                this.isFell = false;
                 game.speed = 3.8;
             }
             this.hurtFrame++;
-            i = this.animationHurt[this.frame];
+            if (this.isFell) {
+                i = this.animationFallen[this.frame];
+            } else {
+                i = this.animationHurt[this.frame];
+            }
             this.sprite[i].draw(context, 60, -45);
-        } else if (this.isFell) { 
-            
         } else if (this.isGodMode) {
             if (this.godModeFrame === 600) {
                 this.godModeFrame = 0;
@@ -175,6 +185,9 @@ var penguin = {
             if (this.deathFrame === 30) {
                 this.deathFrame = 0;
                 game.currentState = state.GAME_OVER;
+                canvas.addEventListener('mouseup', gameOver.checkClick);
+                window.addEventListener('keydown', gameOver.onPress, false);
+                localStorage['bestScore'] = (scoreBar.score > localStorage['bestScore']) ? scoreBar.score : localStorage['bestScore'];
             }
             this.deathFrame++;
             i = this.animationDeath[this.frame];

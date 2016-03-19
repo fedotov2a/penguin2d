@@ -47,7 +47,7 @@ var iceHole = {
             if (penguin.isHit(this._iceHole[i].x + this.targetX, this.y + this.targetY, this.radius)) {
                 if (!penguin.isGodMode) {
                     penguin.isHurt = true;
-                    //penguin.isFell = true;
+                    penguin.isFell = true;
                     healthBar.isHitEnemy = true;
 
                     this._iceHole.splice(i, 1);
