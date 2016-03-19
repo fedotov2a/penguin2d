@@ -84,7 +84,10 @@ var game = {
         menu.muteOnButton.onload = function(){ context.drawImage(menu.muteOnButton, menu.buttonX[2], menu.buttonY[2]) };
 
         gameOver.init();
+<<<<<<< HEAD
         rules.init();
+=======
+>>>>>>> gh-pages
         
 //        menu.timerId = setInterval("update()", 1000/menu.framesMenu);
 //        canvas.addEventListener("mousemove", menu.checkPos);
@@ -186,6 +189,7 @@ function render() {
         penguin.render(context);
         healthBar.render(context);
         scoreBar.render(context);
+        
     } else if (game.currentState === state.GAME_OVER) {
         gameOver.render(context);
     } else if (game.currentState === state.RULES) {
