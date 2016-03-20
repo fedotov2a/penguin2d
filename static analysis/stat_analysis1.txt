@@ -1,0 +1,19 @@
+game.js: line 49, col 25, ['bestScore'] is better written in dot notation.
+game.js: line 50, col 25, ['bestScore'] is better written in dot notation.
+game.js: line 72, col 80, Missing semicolon.
+game.js: line 75, col 87, Missing semicolon.
+game.js: line 79, col 112, Missing semicolon.
+game.js: line 83, col 114, Missing semicolon.
+game.js: line 87, col 118, Missing semicolon.
+game.js: line 91, col 114, Missing semicolon.
+game.js: line 110, col 10, Missing semicolon.
+game.js: line 148, col 6, Missing semicolon.
+
+gameOver.js: line 30, col 57, ['bestScore'] is better written in dot notation.
+
+penguin.js: line 189, col 29, ['bestScore'] is better written in dot notation.
+penguin.js: line 189, col 75, ['bestScore'] is better written in dot notation.
+penguin.js: line 189, col 121, ['bestScore'] is better written in dot notation.
+penguin.js: line 208, col 2, Missing semicolon.
+
+15 errors

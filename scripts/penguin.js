@@ -186,7 +186,7 @@ var penguin = {
                 game.currentState = state.GAME_OVER;
                 canvas.addEventListener('mouseup', gameOver.checkClick);
                 window.addEventListener('keydown', gameOver.onPress, false);
-                localStorage['bestScore'] = (scoreBar.score > localStorage['bestScore']) ? scoreBar.score : localStorage['bestScore'];
+                localStorage.bestScore = (scoreBar.score > localStorage.bestScore) ? scoreBar.score : localStorage.bestScore;
             }
             this.deathFrame++;
             i = this.animationDeath[this.frame];
@@ -205,4 +205,4 @@ var penguin = {
         // context.stroke();
         // context.closePath();
     }
-}
+};

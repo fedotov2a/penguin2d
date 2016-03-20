@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: healthBar.js</title>
+    <title>JSDoc: Source: rules.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: healthBar.js</h1>
+    <h1 class="page-title">Source: rules.js</h1>
 
     
 
@@ -27,49 +27,56 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
-* Объект "Панель Здоровья".
+* Объект Экран Правила.
 *
-* Содержит описание и поведение Панели Здоровья в игре.
+* Содержит описание элементов экрана Правила.
 *
 * @constructor
 */
-var healthBar = {
-    isHitEnemy: false,
-    isHitIcecream: false,
+rules = {
+	bgImage: new Image(),
+	pageImage: new Image(),
+	backButton: new Image(),
 
-    sprite: [
-        new Sprite(image, 1226, 711, 43, 60),
-        new Sprite(image, 1226, 711, 43, 60),
-        new Sprite(image, 1226, 711, 43, 60)
-    ],
+	backButtonX: 4,
+	backButtonY: 4,
+	backButtonWidth: 90,
+	backButtonHeight: 81,
 
-    /**
-    * Обновляет объект "Панель Здоровья" в игре.
-    *
-    */
-    update: function() {
-        if (this.isHitEnemy) {
-            this.sprite.splice(this.sprite.length - 1, 1);
-            this.isHitEnemy = false;
-            if (this.sprite.length === 0) {
-                penguin.isDie = true;
-            }
-        } else if (this.isHitIcecream) {
-            if (this.sprite.length &lt; 3) {
-                this.sprite.splice(this.sprite.length, 0, new Sprite(image, 1226, 711, 43, 60));
-            }
-            this.isHitIcecream = false;
-        }
+	/**
+	* Ининциализирует объекты на экране Правила
+	*
+	*/
+    init: function() {
+       rules.bgImage.src = "./scripts/resource/bg.png";
+       rules.pageImage.src = "./scripts/resource/rules_page.png";
+       rules.backButton.src = './scripts/resource/back.png';
     },
 
     /**
-    * Отрисовывает объект "Панель Здоровья" в игре.
+    * Отрисовывает элементы экрана Правила.
     *
     * @param {CanvasRenderingContext2D} context место для рисования.
     */
     render: function(context) {
-        for (var i = 0, length = this.sprite.length; i &lt; length; i++) {
-            this.sprite[i].draw(context, 20 + i * 20, 20);
+       context.clearRect(0, 0, game.width, game.height);
+       context.drawImage(this.bgImage, 0, 0);
+       context.drawImage(this.pageImage, 0, 0);
+       context.drawImage(this.backButton, 4, 4);
+    },
+
+    /**
+    * Обрабатывает события мыши.
+    *
+    * @param {Event} mouseEvent событие мыши.
+    */
+    checkClick: function(mouseEvent) {
+    	if(mouseEvent.offsetX > rules.backButtonX &amp;&amp; mouseEvent.offsetX &lt; rules.backButtonX + rules.backButtonWidth) {
+            if(mouseEvent.offsetY > rules.backButtonY &amp;&amp; mouseEvent.offsetY &lt; rules.backButtonY + rules.backButtonHeight) {
+            	canvas.removeEventListener('mouseup', rules.checkClick);
+            	canvas.addEventListener('mouseup', menu.checkClick);
+            	game.currentState = state.MENU;
+            }
         }
     }
 };</code></pre>

@@ -27,25 +27,115 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
-* Объект Конец игры.
-* 
+* Объект Экран Конец Игры.
+*
+* Содержит описание элементов экрана Конца Игры.
+*
 * @constructor
 */
 gameOver = {
-	/**
-	* Отрисовывает экран конца игры.
-	*
-	* @param {CanvasRenderingContext2D} context место для рисования.  
- 	*/
-	render: function(context) {
-		context.fillStyle="#0000bb";
-		context.fillRect(0, 0, 720, 480);
-		context.font = '40pt Calibri';
-        context.fillStyle = 'white';
-        context.fillText("КОНЕЦ ИГРЫ :(", 100, 110);
-        context.fillText("ОЧКОВ НАБРАНО: " + scoreBar.score, 100, 170);
-        context.fillText("F5 - СЫГРАТЬ ЕЩЁ РАЗ", 100, 250);
-	}
+    endImage: new Image(),
+    retryImage: new Image(),
+    retryClickImage: new Image(),
+
+    // положение кнопки по (X,Y) [Retry]
+    buttonX: [310],
+    buttonY: [320],
+    
+    // размер кнопки [Retry]
+    buttonWidth: [123],
+    buttonHeight: [81], 
+        
+    /**
+    * Ининциализирует объекты на экране Конец игры
+    *
+    */
+    init: function() {
+        gameOver.endImage.src = "./scripts/resource/end_page.png";
+        gameOver.retryImage.src = "./scripts/resource/retry.png";
+        gameOver.retryClickImage.src = "./scripts/resource/retry_click.png";
+    },
+    
+    /**
+    * Отрисовывает элементы экрана Конца игры.
+    *
+    * @param {CanvasRenderingContext2D} context место для рисования.
+    */
+    render: function(context) {
+        context.clearRect(0, 0, game.width, game.height);
+        context.drawImage(this.endImage, 0, 0);
+        context.drawImage(this.retryImage, gameOver.buttonX[0], gameOver.buttonY[0]);
+
+        context.beginPath();
+        context.font = '32pt Helvetica';
+        context.fillStyle = '#FFA500';
+        context.fillText('Результат:      x' + scoreBar.score, 100, 240);
+        context.fillText('Лучший:      x' + localStorage.bestScore, 100, 300);
+        snowflake.sprite.draw(context, 310, 190);
+        snowflake.sprite.draw(context, 270, 250);
+        context.closePath();
+    },
+
+    /**
+    * Обрабатывает события клавиатуры.
+    *
+    * @param {Event} event событие клавиатуры.
+    *
+    */
+    onPress: function(event) {
+        if (event.keyCode === KEY_SPACE) {
+            window.removeEventListener('keydown', gameOver.onPress);
+            canvas.removeEventListener('mouseup', gameOver.checkClick);
+            game.frames = 0;
+            game.speed = 3.5;
+            scoreBar.score = 0;
+            penguin.isDie = false;
+            icecream.reset();
+            iceHole.reset();
+            pieceOfIce.reset();
+            rock.reset();
+            snowdrift.reset();
+            snowflake.reset();
+            walrus.reset();
+            healthBar.sprite = [
+                new Sprite(image, 1226, 711, 43, 60),
+                new Sprite(image, 1226, 711, 43, 60),
+                new Sprite(image, 1226, 711, 43, 60)
+            ];
+            game.currentState = state.GAME;
+        }
+    },
+    
+    /**
+    * Обрабатывает события мыши.
+    *
+    * @param {Event} mouseEvent событие мыши.
+    */
+    checkClick: function(mouseEvent) {       
+        if(mouseEvent.offsetX > gameOver.buttonX[0] &amp;&amp; mouseEvent.offsetX &lt; gameOver.buttonX[0] + gameOver.buttonWidth[0]) {
+            if(mouseEvent.offsetY > gameOver.buttonY[0] &amp;&amp; mouseEvent.offsetY &lt; gameOver.buttonY[0] + gameOver.buttonHeight[0]) {
+                canvas.removeEventListener('mouseup', gameOver.checkClick);
+                window.removeEventListener('keydown', gameOver.onPress);
+                game.frames = 0;
+                game.speed = 3.5;
+                scoreBar.score = 0;
+                penguin.isDie = false;
+                icecream.reset();
+                iceHole.reset();
+                pieceOfIce.reset();
+                rock.reset();
+                snowdrift.reset();
+                snowflake.reset();
+                walrus.reset();
+                healthBar.sprite = [
+                    new Sprite(image, 1226, 711, 43, 60),
+                    new Sprite(image, 1226, 711, 43, 60),
+                    new Sprite(image, 1226, 711, 43, 60)
+                ];
+                game.currentState = state.GAME;
+            }
+        }
+    }
 };</code></pre>
         </article>
     </section>
@@ -56,13 +146,13 @@ gameOver = {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="game.html">game</a></li><li><a href="gameOver.html">gameOver</a></li><li><a href="healthBar.html">healthBar</a></li><li><a href="icecream.html">icecream</a></li><li><a href="iceHole.html">iceHole</a></li><li><a href="menu.html">menu</a></li><li><a href="penguin.html">penguin</a></li><li><a href="pieceOfIce.html">pieceOfIce</a></li><li><a href="rock.html">rock</a></li><li><a href="scoreBar.html">scoreBar</a></li><li><a href="snowdrift.html">snowdrift</a></li><li><a href="snowflake.html">snowflake</a></li><li><a href="sprite.html">sprite</a></li><li><a href="state.html">state</a></li></ul><h3>Global</h3><ul><li><a href="global.html#main">main</a></li><li><a href="global.html#onPress">onPress</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#update">update</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="about.html">about</a></li><li><a href="game.html">game</a></li><li><a href="gameOver.html">gameOver</a></li><li><a href="healthBar.html">healthBar</a></li><li><a href="icecream.html">icecream</a></li><li><a href="iceHole.html">iceHole</a></li><li><a href="menu.html">menu</a></li><li><a href="penguin.html">penguin</a></li><li><a href="pieceOfIce.html">pieceOfIce</a></li><li><a href="rock.html">rock</a></li><li><a href="rules.html">rules</a></li><li><a href="scoreBar.html">scoreBar</a></li><li><a href="snowdrift.html">snowdrift</a></li><li><a href="snowflake.html">snowflake</a></li><li><a href="Sprite.html">Sprite</a></li><li><a href="state.html">state</a></li><li><a href="walrus.html">walrus</a></li></ul><h3>Global</h3><ul><li><a href="global.html#main">main</a></li><li><a href="global.html#onPress">onPress</a></li><li><a href="global.html#render">render</a></li><li><a href="global.html#run">run</a></li><li><a href="global.html#update">update</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Mar 13 2016 21:04:21 GMT+0300 (Романское время (зима))
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Mar 20 2016 12:01:09 GMT+0300 (Романское время (зима))
 </footer>
 
 <script> prettyPrint(); </script>

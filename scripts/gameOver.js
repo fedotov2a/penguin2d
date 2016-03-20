@@ -1,3 +1,10 @@
+/**
+* Объект Экран Конец Игры.
+*
+* Содержит описание элементов экрана Конца Игры.
+*
+* @constructor
+*/
 gameOver = {
     endImage: new Image(),
     retryImage: new Image(),
@@ -11,13 +18,21 @@ gameOver = {
     buttonWidth: [123],
     buttonHeight: [81], 
         
-
+    /**
+    * Ининциализирует объекты на экране Конец игры
+    *
+    */
     init: function() {
         gameOver.endImage.src = "./scripts/resource/end_page.png";
         gameOver.retryImage.src = "./scripts/resource/retry.png";
         gameOver.retryClickImage.src = "./scripts/resource/retry_click.png";
     },
     
+    /**
+    * Отрисовывает элементы экрана Конца игры.
+    *
+    * @param {CanvasRenderingContext2D} context место для рисования.
+    */
     render: function(context) {
         context.clearRect(0, 0, game.width, game.height);
         context.drawImage(this.endImage, 0, 0);
@@ -27,12 +42,18 @@ gameOver = {
         context.font = '32pt Helvetica';
         context.fillStyle = '#FFA500';
         context.fillText('Результат:      x' + scoreBar.score, 100, 240);
-        context.fillText('Лучший:      x' + localStorage['bestScore'], 100, 300);
+        context.fillText('Лучший:      x' + localStorage.bestScore, 100, 300);
         snowflake.sprite.draw(context, 310, 190);
         snowflake.sprite.draw(context, 270, 250);
         context.closePath();
     },
 
+    /**
+    * Обрабатывает события клавиатуры.
+    *
+    * @param {Event} event событие клавиатуры.
+    *
+    */
     onPress: function(event) {
         if (event.keyCode === KEY_SPACE) {
             window.removeEventListener('keydown', gameOver.onPress);
@@ -57,6 +78,11 @@ gameOver = {
         }
     },
     
+    /**
+    * Обрабатывает события мыши.
+    *
+    * @param {Event} mouseEvent событие мыши.
+    */
     checkClick: function(mouseEvent) {       
         if(mouseEvent.offsetX > gameOver.buttonX[0] && mouseEvent.offsetX < gameOver.buttonX[0] + gameOver.buttonWidth[0]) {
             if(mouseEvent.offsetY > gameOver.buttonY[0] && mouseEvent.offsetY < gameOver.buttonY[0] + gameOver.buttonHeight[0]) {
