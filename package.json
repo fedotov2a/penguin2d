@@ -7,6 +7,6 @@
     "jshint": "^2.6.0"
   },
   "scripts": {
-    "test": "./node_modules/jshint/bin/jshint about.js background.js game.js gameOver.js healthBar.js icecream.js iceHole.js menu.js penguin.js pieceOfIce.js rock.js rules.js scoreBar.js snowdrift.js snowflake.js sprite.js walrus.js"
+    "test": "./node_modules/jshint/bin/jshint ./scripts/about.js ./scripts/background.js ./scripts/game.js ./scripts/gameOver.js ./scripts/healthBar.js ./scripts/icecream.js ./scripts/iceHole.js ./scripts/menu.js ./scripts/penguin.js ./scripts/pieceOfIce.js ./scripts/rock.js ./scripts/rules.js ./scripts/scoreBar.js ./scripts/snowdrift.js ./scripts/snowflake.js ./scripts/sprite.js ./scripts/walrus.js"
   }
 }
