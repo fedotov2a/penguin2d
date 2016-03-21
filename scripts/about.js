@@ -24,7 +24,7 @@ about = {
        about.pageImage.src = "./scripts/resource/about_page.png";
        about.backButton.src = './scripts/resource/back.png';
     },
-   
+
     /**
     * Отрисовывает элементы экрана Правила.
     *

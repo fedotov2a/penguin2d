@@ -90,7 +90,6 @@ var game = {
         menu.aboutClickImage.src = "./scripts/resource/about_click.png";
         menu.aboutImage.onload = function(){ context.drawImage(menu.aboutImage, menu.buttonX[3], menu.buttonY[3]); };
         
-        
         gameOver.init();
         rules.init();
         about.init();
