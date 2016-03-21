@@ -83,6 +83,8 @@ var menu = {
             if(mouseEvent.offsetY > menu.buttonY[0] && mouseEvent.offsetY < menu.buttonY[0] + menu.buttonHeight[0]) {
                 menu.isClickPlay = true;
                 canvas.removeEventListener("mouseup", menu.checkClick);
+                canvas.removeEventListener("mouseup", rules.checkClick);
+                canvas.removeEventListener("mouseup", about.checkClick);
                 game.currentState = state.GAME;
             }
         }
@@ -113,11 +115,13 @@ var menu = {
                 if (menu.muteOn) {
                     context.clearRect(menu.buttonX[2], menu.buttonY[2], menu.buttonWidth[3], menu.buttonHeight[3]);
                     context.drawImage(menu.muteOffButton, menu.buttonX[2], menu.buttonY[2]);
+                    document.getElementById('main').pause();
                     menu.muteOn = false;
                     
                 } else {
                     context.clearRect(menu.buttonX[2], menu.buttonY[2], menu.buttonWidth[3], menu.buttonHeight[3]);
                     context.drawImage(menu.muteOnButton, menu.buttonX[2], menu.buttonY[2]);
+                    document.getElementById('main').play();
                     menu.muteOn = true;
                 }
             }
