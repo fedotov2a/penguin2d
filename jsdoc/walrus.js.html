@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: snowflake.js</title>
+    <title>JSDoc: Source: walrus.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: snowflake.js</h1>
+    <h1 class="page-title">Source: walrus.js</h1>
 
     
 
@@ -27,62 +27,67 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
-* Объект "Снежинка".
+* Объект "Морж".
 *
-* Содержит описание и поведение Снежинки в игре.
-*
+* Содержит описание и поведение Моржа в игре.
 * @constructor
 */
-var snowflake = {
-    _snowflake: [],
+var walrus = {
+    _walrus: [],
     repeat: 500,
 
     x: 0,
     y: game.groundLayer,
 
-    targetX: 28,
-    targetY: 30,
-    radius: 26,
+    targetX: 45,
+    targetY: 5,
+    radius: 40,
 
-    sprite: new Sprite(image, 898, 711, 60, 60),
+    speed: 5,
+
+    sprite: new Sprite(image, 1268, 630, 133, 142),
 
     /**
-    * Очищает массив объектов "Мороженое".
+    * Очищает массив объектов "Морж".
     *
     */
     reset: function () {
-        this._snowflake = [];
+        this._walrus = [];
     },
 
     /**
-    * Обновляет положение объекта "Мороженое" в игре.
+    * Обновляет положение объекта "Морж" в игре.
     *
     */
     update: function() {
         if (game.frames % this.repeat === 0) {
-            var _x = game.width + (this.sprite.width + 200 * Math.random());
-            this._snowflake.push({
-                x: _x,
-                y: game.groundLayer - 140,
+            this.x = game.width + (this.sprite.width + 500 * Math.random());
+            this._walrus.push({
+                x: walrus.x,
+                y: game.groundLayer - 60,
                 width: this.sprite.width,
                 height: this.sprite.height
             });
         }
 
-        for (var i = 0, length = this._snowflake.length; i &lt; length; i++) {
-            this._snowflake[i].x -= game.speed;
+        for (var i = 0, length = this._walrus.length; i &lt; length; i++) {
+            this._walrus[i].x -= game.speed + this.speed;
 
-            if (penguin.isHit(this._snowflake[i].x + this.targetX, this._snowflake[i].y + this.targetY, this.radius)) {
-                document.getElementById('snowflake').play();
-                scoreBar.score += 10;
-                this._snowflake.splice(i, 1);
-                i--;
-                length--;
-                continue;
+            if (penguin.isHit(this._walrus[i].x + this.targetX, this.y + this.targetY, this.radius)) {
+                if (!penguin.isGodMode) {
+                    document.getElementById('hitWalrus').play();
+                    penguin.isHurt = true;
+                    healthBar.isHitEnemy = true;
+
+                    this._walrus.splice(i, 1);
+                    i--;
+                    length--;
+                    continue;
+                }
             }
 
-            if (this._snowflake[i].x &lt; -50) {
-                this._snowflake.splice(i, 1);
+            if (this._walrus[i].x &lt; -70) {
+                this._walrus.splice(i, 1);
                 i--;
                 length--;
             }
@@ -90,17 +95,17 @@ var snowflake = {
     },
 
     /**
-    * Отрисовывает объект "Сугроб" в игре.
+    * Отрисовывает объект "Морж" в игре.
     *
     * @param {CanvasRenderingContext2D} context место для рисования.
     */
     render: function(context) {
-        for (var i = 0, length = this._snowflake.length; i &lt; length; i++) {
-            this.sprite.draw(context, this._snowflake[i].x, this._snowflake[i].y);
+        for (var i = 0, length = this._walrus.length; i &lt; length; i++) {
+            this.sprite.draw(context, this._walrus[i].x, this._walrus[i].y);
             // context.beginPath();
-            // context.arc(this._snowflake[i].x + this.targetX, this._snowflake[i].y + this.targetY, this.radius, 0, 2 * Math.PI, false);
+            // context.arc(this._walrus[i].x + this.targetX, this.y + this.targetY, this.radius, 0, 2*Math.PI, false);
             // context.lineWidth = 1;
-            // context.strokeStyle = 'yellow';
+            // context.strokeStyle = 'green';
             // context.stroke();
             // context.closePath();
         }
