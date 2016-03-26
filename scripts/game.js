@@ -62,6 +62,7 @@ var game = {
 
         // document.getElementById('my-canvas').addEventListener('click', onPress, false);
         window.addEventListener('keydown', onPress, false);
+        canvas.addEventListener('mousedown', onPressMouse, false);
         canvas.width = this.width;
         canvas.height = this.height;
 
@@ -125,6 +126,24 @@ function onPress(event) {
             game.currentState = state.GAME;
         } else if (!penguin.isJump()) {
             penguin.jump();
+        }
+    }
+}
+
+/**
+* Обрабатывает события мыши.
+*
+* @param {Event} event событие мыши
+*
+*/
+function onPressMouse(mouseEvent) {
+    if (game.currentState === state.GAME) {
+        if (mouseEvent.offsetX > 0 && mouseEvent.offsetX < game.width) {
+            if (mouseEvent.offsetY > 0 && mouseEvent.offsetY < game.height) {
+                if (!penguin.isJump()) {
+                    penguin.jump();
+                }
+            }
         }
     }
 }
