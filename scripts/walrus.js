@@ -6,7 +6,7 @@
 */
 var walrus = {
     _walrus: [],
-    repeat: 500,
+    repeat: 1627,
 
     x: 0,
     y: game.groundLayer,
@@ -33,7 +33,7 @@ var walrus = {
     */
     update: function() {
         if (game.frames % this.repeat === 0) {
-            this.x = game.width + (this.sprite.width + 500 * Math.random());
+            this.x = game.width + (this.sprite.width + 503 * Math.random());
             this._walrus.push({
                 x: walrus.x,
                 y: game.groundLayer - 60,

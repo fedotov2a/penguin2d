@@ -156,8 +156,8 @@ function update() {
     if (game.currentState === state.MENU) {
 
     } else if (game.currentState === state.GAME) {
-        game.frames = (game.frames === 10000) ? 0 : game.frames + 1;
-        game.speed += 0.005;
+        game.frames = (game.frames === 9999999) ? 0 : game.frames + 1;
+        game.speed += 0.001;
         background.update();
         rock.update();
         snowdrift.update();
