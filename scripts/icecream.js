@@ -7,7 +7,7 @@
 */
 var icecream = {
     _icecream: [],
-    repeat: 1000,
+    repeat: 4800,
 
     x: 0,
     y: game.groundLayer,
@@ -32,7 +32,7 @@ var icecream = {
     */
     update: function() {
         if (game.frames % this.repeat === 0) {
-            var _x = game.width + (this.sprite.width + 200 * Math.random());
+            var _x = game.width + (this.sprite.width + 900 * (Math.random() + 1));
             this._icecream.push({
                 x: _x,
                 y: game.groundLayer - 140,

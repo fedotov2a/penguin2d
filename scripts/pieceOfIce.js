@@ -7,7 +7,7 @@
 */
 var pieceOfIce = {
     _pieceOfIce: [],
-    repeat: 900,
+    repeat: 3600,
 
     x: 0,
     y: game.groundLayer,
@@ -32,7 +32,7 @@ var pieceOfIce = {
     */
     update: function() {
         if (game.frames % this.repeat === 0) {
-            var _x = game.width + (this.sprite.width + 200 * Math.random());
+            var _x = game.width + (this.sprite.width + 500 * (Math.random() + 1));
             this._pieceOfIce.push({
                 x: _x,
                 y: game.groundLayer - 140,

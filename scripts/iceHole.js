@@ -7,7 +7,7 @@
 */
 var iceHole = {
     _iceHole: [],
-    repeat: 907,
+    repeat: 1000,
 
     x: 0,
     y: game.groundLayer,
@@ -32,7 +32,7 @@ var iceHole = {
     */
     update: function() {
         if (game.frames % this.repeat === 0) {
-            var _x = game.width + (this.sprite.width + 250 * Math.random());
+            var _x = game.width + (this.sprite.width + 600 * (Math.random() + 1));
             this._iceHole.push({
                 x: _x,
                 y: game.groundLayer + 40,

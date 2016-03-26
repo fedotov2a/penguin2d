@@ -2,7 +2,9 @@ var
     canvas,
     context,
     image = new Image(),
+    boom = new Image(),
     sprites = './scripts/resource/sprites.png',
+    boomImage = './scripts/resource/boom.png',
 
     KEY_SPACE = 32
 ;
@@ -60,13 +62,13 @@ var game = {
 
         // document.getElementById('my-canvas').addEventListener('click', onPress, false);
         window.addEventListener('keydown', onPress, false);
+        canvas.addEventListener('mousedown', onPressMouse, false);
         canvas.width = this.width;
         canvas.height = this.height;
 
         context = canvas.getContext('2d');
         // context.scale(game.width / 500, game.height / 400);
         document.getElementById('my-canvas').appendChild(canvas);
-
 
         menu.bgImage.src = "./scripts/resource/bg.png";
         menu.bgImage.onload = function(){ context.drawImage(menu.bgImage, 0, 0); };
@@ -104,6 +106,7 @@ var game = {
         // gameOver.framesGameOver = this.speed;
         
         image.src = sprites;
+        boom.src = boomImage;
         image.onload = function() {
             run();
         };
@@ -123,6 +126,24 @@ function onPress(event) {
             game.currentState = state.GAME;
         } else if (!penguin.isJump()) {
             penguin.jump();
+        }
+    }
+}
+
+/**
+* Обрабатывает события мыши.
+*
+* @param {Event} event событие мыши
+*
+*/
+function onPressMouse(mouseEvent) {
+    if (game.currentState === state.GAME) {
+        if (mouseEvent.offsetX > 0 && mouseEvent.offsetX < game.width) {
+            if (mouseEvent.offsetY > 0 && mouseEvent.offsetY < game.height) {
+                if (!penguin.isJump()) {
+                    penguin.jump();
+                }
+            }
         }
     }
 }
@@ -156,8 +177,8 @@ function update() {
     if (game.currentState === state.MENU) {
 
     } else if (game.currentState === state.GAME) {
-        game.frames = (game.frames === 10000) ? 0 : game.frames + 1;
-        game.speed += 0.005;
+        game.frames = (game.frames === 9999999) ? 0 : game.frames + 1;
+        game.speed += 0.001;
         background.update();
         rock.update();
         snowdrift.update();
