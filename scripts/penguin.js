@@ -35,7 +35,10 @@ var penguin = {
         new Sprite(image, 1074, 411, 121, 100),
 
         /* animate for fallen */
-        new Sprite(image, 970, 260, 109, 57)
+        new Sprite(image, 970, 260, 109, 57),
+
+        /* boom */
+        new Sprite(boom, 0, 0, 300, 222)
     ],
 
     frame: 0,
@@ -118,7 +121,7 @@ var penguin = {
             game.speed = 0;
             if (!this.isJump()) { 
                 this.y = game.groundLayer;
-            } 
+            }
             if (this.isFell) {
                 this.y = game.groundLayer + 57;
             }
@@ -146,7 +149,7 @@ var penguin = {
     },
 
     /**
-    * Отрисовывает объект "Сугроб" в игре.
+    * Отрисовывает объект "Пингвин" в игре.
     *
     * @param {CanvasRenderingContext2D} context место для рисования.
     */
@@ -155,6 +158,7 @@ var penguin = {
         context.translate(this.x, this.y);
         var i;
         if (this.isHurt) {
+            context.drawImage(boom, 100, -200);
             if (this.hurtFrame === 10) {
                 this.hurtFrame = 0;
                 this.isHurt = false;

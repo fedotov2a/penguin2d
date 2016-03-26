@@ -2,7 +2,9 @@ var
     canvas,
     context,
     image = new Image(),
+    boom = new Image(),
     sprites = './scripts/resource/sprites.png',
+    boomImage = './scripts/resource/boom.png',
 
     KEY_SPACE = 32
 ;
@@ -67,7 +69,6 @@ var game = {
         // context.scale(game.width / 500, game.height / 400);
         document.getElementById('my-canvas').appendChild(canvas);
 
-
         menu.bgImage.src = "./scripts/resource/bg.png";
         menu.bgImage.onload = function(){ context.drawImage(menu.bgImage, 0, 0); };
 
@@ -104,6 +105,7 @@ var game = {
         // gameOver.framesGameOver = this.speed;
         
         image.src = sprites;
+        boom.src = boomImage;
         image.onload = function() {
             run();
         };
