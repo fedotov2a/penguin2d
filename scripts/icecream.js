@@ -45,7 +45,9 @@ var icecream = {
             this._icecream[i].x -= game.speed;
 
             if (penguin.isHit(this._icecream[i].x + this.targetX, this._icecream[i].y + this.targetY, this.radius)) {
-                document.getElementById('icecream').play();
+                if (menu.muteOn) {
+                    document.getElementById('icecream').play();
+                }
                 healthBar.isHitIcecream = true;
                 this._icecream.splice(i, 1);
                 i--;

@@ -75,7 +75,9 @@ var penguin = {
     */
     jump: function() {
         this.velocity = -this._jump;
-        document.getElementById('jump').play();
+        if (menu.muteOn) {
+            document.getElementById('jump').play();
+        }
     },
 
     /**

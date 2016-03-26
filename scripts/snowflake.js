@@ -45,7 +45,9 @@ var snowflake = {
             this._snowflake[i].x -= game.speed;
 
             if (penguin.isHit(this._snowflake[i].x + this.targetX, this._snowflake[i].y + this.targetY, this.radius)) {
-                document.getElementById('snowflake').play();
+                if (menu.muteOn) {
+                    document.getElementById('snowflake').play();
+                }
                 scoreBar.score += 10;
                 this._snowflake.splice(i, 1);
                 i--;
