@@ -45,7 +45,9 @@ var rock = {
 
             if (penguin.isHit(this._rock[i].x + this.targetX, this.y + this.targetY, this.radius)) {
                 if (!penguin.isGodMode) {
-                    document.getElementById('hit').play();
+                    if (menu.muteOn) {
+                        document.getElementById('hit').play();
+                    }
                     penguin.isHurt = true;
                     healthBar.isHitEnemy = true;
 

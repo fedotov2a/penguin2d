@@ -47,7 +47,9 @@ var walrus = {
 
             if (penguin.isHit(this._walrus[i].x + this.targetX, this.y + this.targetY, this.radius)) {
                 if (!penguin.isGodMode) {
-                    document.getElementById('hitWalrus').play();
+                    if (menu.muteOn) {
+                        document.getElementById('hitWalrus').play();
+                    }
                     penguin.isHurt = true;
                     healthBar.isHitEnemy = true;
 
