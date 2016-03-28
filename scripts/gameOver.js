@@ -39,12 +39,12 @@ gameOver = {
         context.drawImage(this.retryImage, gameOver.buttonX[0], gameOver.buttonY[0]);
 
         context.beginPath();
-        context.font = '32pt Helvetica';
+        context.font = '25pt Arial';
         context.fillStyle = '#FFA500';
-        context.fillText('Результат:      x' + scoreBar.score, 100, 240);
-        context.fillText('Лучший:      x' + localStorage.bestScore, 100, 300);
-        snowflake.sprite.draw(context, 310, 190);
-        snowflake.sprite.draw(context, 270, 250);
+        context.fillText('Результат:          x' + scoreBar.score, 210, 230);
+        context.fillText('Лучший:         x' + localStorage.bestScore, 210, 290);
+        snowflake.sprite.draw(context, 390, 190);
+        snowflake.sprite.draw(context, 350, 250);
         context.closePath();
     },
 
