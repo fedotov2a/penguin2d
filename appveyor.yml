@@ -13,10 +13,10 @@ build_script:
 artifacts:
 - path: C:\projects\penguin2d\scripts\metrics.txt
   name: Metrics
-  type: zip
+  type: WebDeployPackage
 - path: C:\projects\penguin2d\scripts\stat_analysis.txt
   name: StatAnalysis
-  type: zip
+  type: WebDeployPackage
 - path: C:\projects\penguin2d\out
   name: Documentation
-  type: zip
+  type: WebDeployPackage
