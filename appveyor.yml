@@ -1,0 +1,22 @@
+version: 1.0.{build}
+install:
+- cmd: >-
+    npm install -g qunitjs
+    npm install -g jsdoc
+    npm install -g complexity-report
+build:
+  verbosity: minimal
+  
+test_script:
+- cmd: jshint ./scripts/about.js ./scripts/background.js ./scripts/game.js ./scripts/gameOver.js ./scripts/healthBar.js ./scripts/icecream.js ./scripts/iceHole.js ./scripts/menu.js ./scripts/penguin.js ./scripts/pieceOfIce.js ./scripts/rock.js ./scripts/rules.js ./scripts/scoreBar.js ./scripts/snowdrift.js ./scripts/snowflake.js ./scripts/sprite.js ./scripts/walrus.js > metrics.txt
+- cmd: cr ./scripts/about.js ./scripts/background.js ./scripts/game.js ./scripts/gameOver.js ./scripts/healthBar.js ./scripts/icecream.js ./scripts/iceHole.js ./scripts/menu.js ./scripts/penguin.js ./scripts/pieceOfIce.js ./scripts/rock.js ./scripts/rules.js ./scripts/scoreBar.js ./scripts/snowdrift.js ./scripts/snowflake.js ./scripts/sprite.js ./scripts/walrus.js > stat_analysis.txt
+- cmd: jsdoc ./scripts/about.js ./scripts/background.js ./scripts/game.js ./scripts/gameOver.js ./scripts/healthBar.js ./scripts/icecream.js ./scripts/iceHole.js ./scripts/menu.js ./scripts/penguin.js ./scripts/pieceOfIce.js ./scripts/rock.js ./scripts/rules.js ./scripts/scoreBar.js ./scripts/snowdrift.js ./scripts/snowflake.js ./scripts/sprite.js ./scripts/walrus.js
+
+artifacts:
+- path: scripts/metrics.txt
+  name: Metrics
+- path: scripts/stat_analysis.txt
+  name: StatAnalysis
+- path: scripts/out
+  name: Documentation
+  type: zip
