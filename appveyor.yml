@@ -9,15 +9,15 @@ build:
   
 test_script:
 - cmd: dir
-- cmd: jshint ./scripts/about.js ./scripts/background.js ./scripts/game.js ./scripts/gameOver.js ./scripts/healthBar.js ./scripts/icecream.js ./scripts/iceHole.js ./scripts/menu.js ./scripts/penguin.js ./scripts/pieceOfIce.js ./scripts/rock.js ./scripts/rules.js ./scripts/scoreBar.js ./scripts/snowdrift.js ./scripts/snowflake.js ./scripts/sprite.js ./scripts/walrus.js > metrics.txt
-- cmd: cr ./scripts/about.js ./scripts/background.js ./scripts/game.js ./scripts/gameOver.js ./scripts/healthBar.js ./scripts/icecream.js ./scripts/iceHole.js ./scripts/menu.js ./scripts/penguin.js ./scripts/pieceOfIce.js ./scripts/rock.js ./scripts/rules.js ./scripts/scoreBar.js ./scripts/snowdrift.js ./scripts/snowflake.js ./scripts/sprite.js ./scripts/walrus.js > stat_analysis.txt
-- cmd: jsdoc ./scripts/about.js ./scripts/background.js ./scripts/game.js ./scripts/gameOver.js ./scripts/healthBar.js ./scripts/icecream.js ./scripts/iceHole.js ./scripts/menu.js ./scripts/penguin.js ./scripts/pieceOfIce.js ./scripts/rock.js ./scripts/rules.js ./scripts/scoreBar.js ./scripts/snowdrift.js ./scripts/snowflake.js ./scripts/sprite.js ./scripts/walrus.js
+- cmd: jshint C:\projects\penguin2d\scripts\about.js C:\projects\penguin2d\scripts\background.js C:\projects\penguin2d\scripts\game.js C:\projects\penguin2d\scripts\gameOver.js C:\projects\penguin2d\scripts\healthBar.js C:\projects\penguin2d\scripts\icecream.js C:\projects\penguin2d\scripts\iceHole.js C:\projects\penguin2d\scripts\menu.js C:\projects\penguin2d\scripts\penguin.js C:\projects\penguin2d\scripts\pieceOfIce.js C:\projects\penguin2d\scripts\rock.js C:\projects\penguin2d\scripts\rules.js C:\projects\penguin2d\scripts\scoreBar.js C:\projects\penguin2d\scripts\snowdrift.js C:\projects\penguin2d\scripts\snowflake.js C:\projects\penguin2d\scripts\sprite.js C:\projects\penguin2d\scripts\walrus.js > metrics.txt
+- cmd: cr C:\projects\penguin2d\scripts\about.js C:\projects\penguin2d\scripts\background.js C:\projects\penguin2d\scripts\game.js C:\projects\penguin2d\scripts\gameOver.js C:\projects\penguin2d\scripts\healthBar.js C:\projects\penguin2d\scripts\icecream.js C:\projects\penguin2d\scripts\iceHole.js C:\projects\penguin2d\scripts\menu.js C:\projects\penguin2d\scripts\penguin.js C:\projects\penguin2d\scripts\pieceOfIce.js C:\projects\penguin2d\scripts\rock.js C:\projects\penguin2d\scripts\rules.js C:\projects\penguin2d\scripts\scoreBar.js C:\projects\penguin2d\scripts\snowdrift.js C:\projects\penguin2d\scripts\snowflake.js C:\projects\penguin2d\scripts\sprite.js C:\projects\penguin2d\scripts\walrus.js > stat_analysis.txt
+- cmd: jsdoc C:\projects\penguin2d\scripts\about.js C:\projects\penguin2d\scripts\background.js C:\projects\penguin2d\scripts\game.js C:\projects\penguin2d\scripts\gameOver.js C:\projects\penguin2d\scripts\healthBar.js C:\projects\penguin2d\scripts\icecream.js C:\projects\penguin2d\scripts\iceHole.js C:\projects\penguin2d\scripts\menu.js C:\projects\penguin2d\scripts\penguin.js C:\projects\penguin2d\scripts\pieceOfIce.js C:\projects\penguin2d\scripts\rock.js C:\projects\penguin2d\scripts\rules.js C:\projects\penguin2d\scripts\scoreBar.js C:\projects\penguin2d\scripts\snowdrift.js C:\projects\penguin2d\scripts\snowflake.js C:\projects\penguin2d\scripts\sprite.js C:\projects\penguin2d\scripts\walrus.js
 
 artifacts:
-- path: scripts/metrics.txt
+- path: C:\projects\penguin2d\scripts\metrics.txt
   name: Metrics
-- path: scripts/stat_analysis.txt
+- path: C:\projects\penguin2d\scripts\stat_analysis.txt
   name: StatAnalysis
-- path: scripts/out
+- path: C:\projects\penguin2d\out
   name: Documentation
   type: zip
