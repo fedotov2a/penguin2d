@@ -12,9 +12,9 @@ build_script:
 - cmd: dir
 
 artifacts:
-- path: C:\projects\penguin2d\metrics.txt
+- path: metrics.txt
   name: Metrics
-- path: C:\projects\penguin2d\stat_analysis.txt
+- path: stat_analysis.txt
   name: StatAnalysis
-- path: C:\projects\penguin2d\out
+- path: out
   name: Documentation
