@@ -9,7 +9,6 @@ build_script:
 - cmd: cr C:\projects\penguin2d\scripts\about.js C:\projects\penguin2d\scripts\background.js C:\projects\penguin2d\scripts\game.js C:\projects\penguin2d\scripts\gameOver.js C:\projects\penguin2d\scripts\healthBar.js C:\projects\penguin2d\scripts\icecream.js C:\projects\penguin2d\scripts\iceHole.js C:\projects\penguin2d\scripts\menu.js C:\projects\penguin2d\scripts\penguin.js C:\projects\penguin2d\scripts\pieceOfIce.js C:\projects\penguin2d\scripts\rock.js C:\projects\penguin2d\scripts\rules.js C:\projects\penguin2d\scripts\scoreBar.js C:\projects\penguin2d\scripts\snowdrift.js C:\projects\penguin2d\scripts\snowflake.js C:\projects\penguin2d\scripts\sprite.js C:\projects\penguin2d\scripts\walrus.js > metrics.txt
 - cmd: jsdoc C:\projects\penguin2d\scripts\about.js C:\projects\penguin2d\scripts\background.js C:\projects\penguin2d\scripts\game.js C:\projects\penguin2d\scripts\gameOver.js C:\projects\penguin2d\scripts\healthBar.js C:\projects\penguin2d\scripts\icecream.js C:\projects\penguin2d\scripts\iceHole.js C:\projects\penguin2d\scripts\menu.js C:\projects\penguin2d\scripts\penguin.js C:\projects\penguin2d\scripts\pieceOfIce.js C:\projects\penguin2d\scripts\rock.js C:\projects\penguin2d\scripts\rules.js C:\projects\penguin2d\scripts\scoreBar.js C:\projects\penguin2d\scripts\snowdrift.js C:\projects\penguin2d\scripts\snowflake.js C:\projects\penguin2d\scripts\sprite.js C:\projects\penguin2d\scripts\walrus.js
 - cmd: jshint C:\projects\penguin2d\scripts\about.js C:\projects\penguin2d\scripts\background.js C:\projects\penguin2d\scripts\game.js C:\projects\penguin2d\scripts\gameOver.js C:\projects\penguin2d\scripts\healthBar.js C:\projects\penguin2d\scripts\icecream.js C:\projects\penguin2d\scripts\iceHole.js C:\projects\penguin2d\scripts\menu.js C:\projects\penguin2d\scripts\penguin.js C:\projects\penguin2d\scripts\pieceOfIce.js C:\projects\penguin2d\scripts\rock.js C:\projects\penguin2d\scripts\rules.js C:\projects\penguin2d\scripts\scoreBar.js C:\projects\penguin2d\scripts\snowdrift.js C:\projects\penguin2d\scripts\snowflake.js C:\projects\penguin2d\scripts\sprite.js C:\projects\penguin2d\scripts\walrus.js > stat_analysis.txt
-- cmd: dir
 
 artifacts:
 - path: metrics.txt
@@ -18,3 +17,5 @@ artifacts:
   name: StatAnalysis
 - path: out
   name: Documentation
+- path: test
+  name: UnitTest
